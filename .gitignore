@@ -1,0 +1,20 @@
+# System files
+.DS_Store
+
+# Auxiliary/generated LaTex files
+*.abs
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.pyg
+*.synctex.gz
+*.xmpdata
+*.xmpi
+
+# Visual Studio Code files
+.vscode/
+
