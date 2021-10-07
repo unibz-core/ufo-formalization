@@ -1,5 +1,5 @@
 
-%%%%%%%%%%%%%%%%%%%%%%%% TAXONOMY %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%% Taxonomy %%%%%%%%%%%%%%%%%%%%%%%%
 
 % Thing
 
@@ -73,10 +73,16 @@ fof(ax_qualityStructure_partition, axiom, (
   ~?[X]: (qualityDimension(X) & qualitySpace(X))
 )).
 
+% TODO: review the definition of "world" as a subtype of "qualityStructure"
+
+fof(ax_qualityStructure_taxonomy_world, axiom, (
+  ![X]: (world(X) => (qualityStructure(X)))
+)).
+
 % Abstract Individual partial taxonomy instances
 
 fof(ax_abstractIndividual_instances, axiom, (
-  set(set1) & quale(quale1) & qualityStructure(qualityStructure1) & qualityDimension(qualityDimension1) & qualitySpace(qualitySpace1)
+  set(set1) & quale(quale1) & qualityStructure(qualityStructure1) & qualityDimension(qualityDimension1) & qualitySpace(qualitySpace1) & world(world1)
 )).
 
 % Endurant
@@ -96,7 +102,7 @@ fof(ax_substantial_taxonomy, axiom, (
 )).
 
 fof(ax_substantial_partition, axiom, (
-  ~?[X]: (object(X) & collective(X) & quantity(X))
+  ~?[X]: ((object(X) & collective(X)) | (object(X) & quantity(X)) | (collective(X) & quantity(X)))
 )).
 
 % Moment
@@ -134,7 +140,7 @@ fof(ax_externallyDependentMode_taxonomy_quaIndividual, axiom, (
 % Endurant partial taxonomy instances
 
 fof(ax_endurant_instances, axiom, (
-  substantial(substantial1) & moment(moment1) & object(object1) & collective(collective1) & quantity(quantity1) & intrinsicMoment(intrinsicMoment1) & relator(relator1) & quality(quality1) & mode(mode1) & externallyDependentMode(externallyDependentMode1) & quaIndividual(quaIndividual1)
+  substantial(substantial1) & moment(moment1) & object(object1) & collective(collective1) & quantity(quantity1) & intrinsicMoment(intrinsicMoment1) & relator(relator1) & quality(quality1) & mode(mode1) & disposition(disposition1) & externallyDependentMode(externallyDependentMode1) & quaIndividual(quaIndividual1)
 )).
 
 % Endurant Type (by ontological nature)
@@ -154,7 +160,7 @@ fof(ax_substantialType_taxonomy, axiom, (
 )).
 
 fof(ax_substantialType_partition, axiom, (
-  ~?[X]: (objectType(X) & collectiveType(X) & quantityType(X))
+  ~?[X]: ((objectType(X) & collectiveType(X)) | (objectType(X) & quantityType(X)) | (collectiveType(X) & quantityType(X)))
 )).
 
 % Moment Type
@@ -230,7 +236,7 @@ fof(ax_nonSortal_taxonomy, axiom, (
 )).
 
 fof(ax_nonSortal_partition, axiom, (
-  ~?[X]: (rigidNonSortal(X) & semiRigidNonSortal(X) & antiRigidNonSortal(X))
+  ~?[X]: ((rigidNonSortal(X) & semiRigidNonSortal(X)) | (rigidNonSortal(X) & antiRigidNonSortal(X)) | (semiRigidNonSortal(X) & antiRigidNonSortal(X)))
 )).
 
 % Category
@@ -261,206 +267,46 @@ fof(ax_endurantType_instances, axiom, (
   sortal(sortal1) & nonSortal(nonSortal1) & rigidSortal(rigidSortal1) & antiRigidSortal(antiRigidSortal1) & kind(kind1) & subkind(subkind1) & phase(phase1) & role(role1) & category(category1) & mixin(mixin1) & antiRigidNonSortal(antiRigidNonSortal1) & phaseMixin(phaseMixin1) & roleMixin(roleMixin1)
 )).
 
-%%%%%Taxonomy of Individuals:
+%%%%%%%%%%% Instance of, Types, and Individuals %%%%%%%%%%
 
-% fof(ax_taxonomy, axiom, (
-% ![X]: ((concreteIndividual(X)|abstractIndividual(X))<=>(individual(X))))).
+fof(ax_dIof, axiom, (
+  ![X,Y,W]: (iof(X,Y,W) => (individual(X) & type(Y) & world(W)))
+)).
 
+fof(ax_dType_a1, axiom, (
+  ![X]: (type(X) <=> (?[Y,W]: iof(Y,X,W)))
+)).
 
-% fof(ax_taxonomy, axiom, (
-% ![X]: ((perdurant(X)|endurant(X))<=>(concreteIndividual(X))))).
+fof(ax_dIndividual_a2, axiom, (
+  ![X]: (individual(X) <=> (~?[Y,W]: iof(Y,X,W)))
+)).
 
+% TODO: confirm whether we are including second-order types in this formalization
 
-% fof(ax_taxonomy, axiom, (
-% ![X]: ((quale(X)|set(X))=>(abstractIndividual(X))))).
+fof(ax_multiLevel_a3, axiom, (
+  ![X,Y,W]: (iof(X,Y,W) => (type(X) | individual(X)))
+)).
 
-% fof(ax_taxonomy, axiom, (
-% ![X]: ((object(X)|collective(X)|quantity(X))<=>(substantial(X))))).
+fof(ax_twoLevelConstrained_a4, axiom, (
+  ~?[X,Y,Z,W]: (type(X) & iof(X,Y,W) & iof(Y,Z,W))
+)).
 
+fof(ax_iofInUse, axiom, (
+  type(t2) & individual(i2) & wolrd(w2) & iof(i2,t2,w2)
+)).
 
-% fof(ax_taxonomy, axiom, (
-% ![X]: ((substantial(X)|moment(X))<=>(endurant(X))))).
+% TODO: (t1) and (t2) do not follow from the previous axioms; we might need an axiom constraining our quantification domain to be limited to things (i.e., "![X]: (thing(X))").
 
-% fof(ax_taxonomy, axiom, (
-% ![X]: ((intrinsicMoment(X)|relator(X))<=>(moment(X))))).
+% fof(th_everythingIsAThing_t1, conjecture, (
+%   ![X]: (type(x) | individual(x))
+% )).
 
-% fof(ax_taxonomy, axiom, (
-% ![X]: ((quality(X)|mode(X))<=>(intrinsicMoment(X))))).
+% fof(th_thingPartition_t2, conjecture, (
+%   ~?[X]: (type(x) & individual(x))
+% )).
 
-% fof(ax_taxonomy, axiom, (
-% ![X]: ((externallyDependentMode(X)|disposition(X))<=>(mode(X))))).
+%%%%%%%% Specialization and Proper Specialization %%%%%%%%
 
-% fof(ax_taxonomy, axiom, (
-% ![X]: ((quaIndividual(X))<=>(externallyDependentMode(X))))).
-
-% fof(ax_taxonomy, axiom, (
-% ![X]: ((qualityStructure(X))<=>(set(X))))).
-
-% fof(ax_taxonomy, axiom, (
-% ![X]: ((qualityDimension(X)|qualitySpace(X))<=>(qualityStructure(X))))).
-
-
-% fof(ax_taxonomy, axiom, (
-% ![X]: (world(X)=>(qualityStructure(X))))).
-
-
-% %%%%%%Disjoitness axioms:
-
-% fof(ax_taxonomy, axiom, (
-%   ~?[X]: (concreteIndividual(X)&abstractIndividual(X)))).
-
-% fof(ax_taxonomy, axiom, (
-%   ~?[X]: (perdurant(X)&endurant(X)))).
-
-
-% fof(ax_taxonomy, axiom, (
-%     ~?[X]: (substantial(X)&moment(X)))).
-
-% fof(ax_taxonomy, axiom, (
-%     ~?[X]: (quale(X)&set(X)))).
-
-
-% fof(ax_taxonomy, axiom, (
-%     ~?[X]: (object(X)&collective(X)))).
-
-
-% fof(ax_taxonomy, axiom, (
-%     ~?[X]: (collective(X)&quantity(X)))).
-
-
-% fof(ax_taxonomy, axiom, (
-%     ~?[X]: (object(X)&quantity(X)))).
-
-% fof(ax_taxonomy, axiom, (
-%     ~?[X]: (intrinsicMoment(X)&relator(X)))).
-
-
-% fof(ax_taxonomy, axiom, (
-%     ~?[X]: (quality(X)&mode(X)))).
-
-% fof(ax_taxonomy, axiom, (
-%     ~?[X]: (externallyDependentMode(X)&disposition(X)))).
-
-% fof(ax_taxonomy, axiom, (
-%     ~?[X]: (qualityDimension(X)&qualitySpace(X)))).
-
-
-
-
-% %%%%%Taxonomy of Types accoording to their instances
-
-% fof(ax_taxonomy, axiom, (
-% ![X]: ((perdurantType(X)|endurantType(X))=>(type(X))))).
-
-% fof(ax_taxonomy, axiom, (
-% ![X]: ((substantialType(X)|momentType(X))<=>(endurantType(X))))).
-
-% fof(ax_taxonomy, axiom, (
-% ![X]: ((objectType(X)|collectiveType(X)|quantityType(X))<=>(substantialType(X))))).
-
-% fof(ax_taxonomy, axiom, (
-% ![X]: ((intrinsicMomentType(X)|relatorType(X))<=>(momentType(X))))).
-
-% fof(ax_taxonomy, axiom, (
-% ![X]: ((qualityType(X)|modeType(X))<=>(intrinsicMomentType(X))))).
-
-% %Disjointness axioms
-
-
-% fof(ax_taxonomy, axiom, (
-%     ~?[X]: (perdurantType(X)&endurantType(X)))).
-
-% fof(ax_taxonomy, axiom, (
-%     ~?[X]: (substantialType(X)&momentType(X)))).
-
-% fof(ax_taxonomy, axiom, (
-%     ~?[X]: (objectType(X)&collectiveType(X)))).
-
-
-% fof(ax_taxonomy, axiom, (
-%     ~?[X]: (objectType(X)&quantityType(X)))).
-
-% fof(ax_taxonomy, axiom, (
-%     ~?[X]: (collectiveType(X)&quantityType(X)))).
-
-% fof(ax_taxonomy, axiom, (
-%         ~?[X]: (intrinsicMomentType(X)&relatorType(X)))).
-
-% fof(ax_taxonomy, axiom, (
-%         ~?[X]: (qualityType(X)&modeType(X)))).
-
-
-% %%%%%Taxonomy accordint to metaproperty (sortality etc).
-
-
-% fof(ax_taxonomy, axiom, (
-% ![X]: ((sortal(X)|nonSortal(X))<=>(endurantType(X))))).
-
-% fof(ax_taxonomy, axiom, (
-% ![X]: ((rigidSortal(X)|antiRigidSortal(X))<=>(sortal(X))))).
-
-% fof(ax_taxonomy, axiom, (
-% ![X]: ((kind(X)|subKind(X))<=>(rigidSortal(X))))).
-
-% fof(ax_taxonomy, axiom, (
-% ![X]: ((phase(X)|role(X))<=>(antiRigidSortal(X))))).
-
-% fof(ax_taxonomy, axiom, (
-% ![X]: ((category(X)|antiRigidNonSortal(X)|mixin(X))<=>(nonSortal(X))))).
-
-% fof(ax_taxonomy, axiom, (
-% ![X]: ((phaseMixin(X)|roleMixin(X))<=>(antiRigidNonSortal(X))))).
-
-
-% %%%Disjointness axioms:
-
-% fof(ax_taxonomy, axiom, (
-%     ~?[X]: (sortal(X)&nonSortal(X)))).
-
-% fof(ax_taxonomy, axiom, (
-%     ~?[X]: (rigidSortal(X)&antiRigidSortal(X)))).
-
-% fof(ax_taxonomy, axiom, (
-%         ~?[X]: (kind(X)&subKind(X)))).
-
-% fof(ax_taxonomy, axiom, (
-%         ~?[X]: (phase(X)&roles(X)))).
-
-% fof(ax_taxonomy, axiom, (
-%         ~?[X]: (category(X)&antiRigidNonSortal(X)))).
-
-% fof(ax_taxonomy, axiom, (
-%         ~?[X]: (category(X)&mixin(X)))).
-
-% fof(ax_taxonomy, axiom, (
-%         ~?[X]: (antiRigidNonSortal(X)&mixin(X)))).
-
-% fof(ax_taxonomy, axiom, (
-%       ~?[X]: (phaseMixin(X)&roleMixin(X)))).
-
-
-
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% %
-% %Definition of instance of (iof), types, and individuals
-% %
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% fof(ax_dtypea1, axiom, (
-%     ![X] : (type(X) <=> (?[W,Y] : (world(W) & (iof(Y,X,W))
-%     ))))).
-
-% %Note: we need to drop that individuals are not wordls, as now worlds are abstract.
-
-% fof(ax_dindividual_a2, axiom, (
-%         ![X] : (individual(X) <=> (![W] : (world(W) => ~?[Y] : (iof(Y,X,W)))) )
-%         )).
-
-% fof(ax_multilevel_a3, axiom, (
-%     ![X,Y,W] : (iof(X,Y,W) => ((individual(X)|type(X)) & type(Y) & world(W))))).
-
-% fof(ax_twolevels_a4, axiom, (
-%         ~?[X,Y,Z,W]: (type(X) & iof(X,Y,W) & iof(Y,Z,W)))).
 
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
