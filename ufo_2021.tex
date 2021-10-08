@@ -300,13 +300,13 @@ fof(ax_twoLevelConstrained_a4, axiom, (
 %   type(t2) & individual(i2) & world(w2) & iof(i2,t2,w2)
 % )).
 
-% Ax |= "th_everythingIsAThing_t1"; conjecture comment for convenience
+% Ax |= "th_everythingIsAThing_t1"; conjecture commented for convenience
 
 % fof(th_everythingIsAThing_t1, conjecture, (
 %   ![X]: (type(X) | individual(X))
 % )).
 
-% Ax |= "th_thingPartition_t2"; conjecture comment for convenience
+% Ax |= "th_thingPartition_t2"; conjecture commented for convenience
 
 % fof(th_thingPartition_t2, conjecture, (
 %   ~?[X]: (type(X) & individual(X))
@@ -332,13 +332,13 @@ fof(ax_properSpecializes_d1, axiom, (
 %   type(t3_1) & type(t3_2) & specializes(t3_1,t3_2) & properSpecializes(t3_1,t3_2) & specializes(t3_1,t3_1)
 % )).
 
-% Ax |= "th_cyclicSpecializations_t3"; conjecture comment for convenience
+% Ax |= "th_cyclicSpecializations_t3"; conjecture commented for convenience
 
 % fof(th_cyclicSpecializations_t3, conjecture, (
 %   ![X,Y]: (specializes(X,Y) => (specializes(X,X) & specializes(Y,Y)))
 % )).
 
-% Ax |= "th_transitiveSpecializations_t4"; conjecture comment for convenience
+% Ax |= "th_transitiveSpecializations_t4"; conjecture commented for convenience
 
 % fof(th_transitiveSpecializations_t4, conjecture, (
 %   ![X,Y,Z]: ((specializes(X,Y) & specializes(Y,Z)) => (specializes(X,Z)))
@@ -351,36 +351,64 @@ fof(ax_sharedSpecializations_a6, axiom, (
   )))
 )).
 
-%%%%%%%%%%%%%%%%% Sortality ans Rigidity %%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%% Sortality and Rigidity %%%%%%%%%%%%%%%%%
 
-% fof(ax_dRigid_a18, axiom, (
-%   ![T]: rigi
-%   ![X,Y]: (properSpecializes(X,Y) <=> (specializes(X,Y) & ~specializes(Y,X)))
+% TODO: I don't find we need to attach the "rigid(T)" predicate to the "endurant(T)" predicate like the paper does, so let's review this idea.
+% TODO: verify whether it is a problem not to introduce predicates "world(W1) &" and "world(W2) &" before each instantiation
+
+fof(ax_dRigid_a18, axiom, (
+  ![T]: (rigid(T) <=> (endurantType(T) & (
+    ![X]: ((?[W1]: (world(W1) & iof(X,T,W1))) => (![W2]: (world(W2) & iof(X,T,W2)))
+  ))))
+)).
+
+fof(ax_dAntiRigid_a19, axiom, (
+  ![T]: (antiRigid(T) <=> (endurantType(T) & (
+    ![X]: ((?[W1]: (world(W1) & iof(X,T,W1))) => (?[W2]: (world(W2) & ~iof(X,T,W2)))
+  ))))
+)).
+
+fof(ax_dSemiRigid_a20, axiom, (
+  ![T]: (semiRigid(T) <=> (endurantType(T) & ~rigid(T) & ~antiRigid(T)))
+)).
+
+% Ax |= "th_thEndurantTypeHaveRigidity_t5"; conjecture commented for convenience
+
+% fof(th_thEndurantTypeHaveRigidity_t5, conjecture, (
+%   ![T]: (endurantType(T) <=> (rigid(T) | semiRigid(T) | antiRigid(T)))
 % )).
 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% %
-% %%Definition of rigidity, anitirigidity, semirigidity, sortality.
-% %
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ax |= "th_thEndurantTypeHaveRigidity_t5"; conjecture commented for convenience
 
-
-% % Definition of rigid type
-% fof(ax_drigid_a7, axiom, (
-%     ![T]: (rigid(T)<=>(endurantType(T) &
-%                     (![X]: ((?[W]: (world(W) & iof(X,T,W))) => (![W2]: (world(W2)=>iof(X,T,W2)))))))
+% fof(th_pairwiseDisjointRigidities_t6, conjecture, (
+%   ~![T]: ((rigid(T) & semiRigid(T)) | (semiRigid(T) & antiRigid(T)) | (rigid(T) & antiRigid(T)))
 % )).
 
-% % Definition of antirigid type
-% fof(ax_dantirigid_a8, axiom, (
-%     ![T]: (antiRigid(T)<=>(endurantType(T) &
-%                     (![X]: ((?[W]: (world(W) & iof(X,T,W))) => (?[W2]: (world(W2) & ~iof(X,T,W2))))))))).
+% Ax |= "th_rigidAntiRigidSpecializationConstraint_t7"; conjecture commented for convenience
 
-% % Implicit definition of semirigid type
-% fof(ax_semirigid_a9, axiom, (
-%     ![T]: (semiRigid(T)<=>(endurantType(T) &
-%                     ~antiRigid(T) & ~rigid(T)))
+% fof(th_rigidAntiRigidSpecializationConstraint_t7, conjecture, (
+%   ~![T1,T2]: (rigid(T1) & antiRigid(T2) & specializes(T1,T2))
 % )).
+
+% Ax |= "th_semiRigidAntiRigidSpecializationConstraint_t8"; conjecture commented for convenience
+
+% fof(th_semiRigidAntiRigidSpecializationConstraint_t8, conjecture, (
+%   ~![T1,T2]: (semiRigid(T1) & antiRigid(T2) & specializes(T1,T2))
+% )).
+
+fof(ax_endurantsUltimateSortal_a21, axiom, (
+  ![E]: (endurant(E) => (
+    ?[U]: (ultimateSortal(U) & (![W]: (world(W) & iof(E,U,W))))
+  ))
+)).
+
+% fof(ax_uniqueUltimateSortal_a21, axiom, (
+%   ?[E,U,W]: (world(W) & ultimateSortal(U) & iof())
+%   ![E]: (endurant(E) => (
+%     ?[U]: (ultimateSortal(U) & (![W]: (world(W) & iof(E,U,W))))
+%   ))
+% )).
+
 
 
 % %%%%%%%%%%%%%%%%%%%%%%%% Definition of sortality
