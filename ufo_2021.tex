@@ -42,10 +42,11 @@ fof(ax_type_partition, axiom, (
 )).
 
 % Thing partial taxonomy instances
+% (tested rule out trivial models)
 
-fof(ax_thing_instances, axiom, (
-  type(type1) & individual(individual1) & concreteIndividual(concreteIndividual1) & abstractIndividual(abstractIndividual1) & endurant(endurant1) & perdurant(perdurant1) & endurantType(endurantType1) & perdurantType(perdurantType1)
-)).
+% fof(ax_thing_instances, axiom, (
+%   type(type1) & individual(individual1) & concreteIndividual(concreteIndividual1) & abstractIndividual(abstractIndividual1) & endurant(endurant1) & perdurant(perdurant1) & endurantType(endurantType1) & perdurantType(perdurantType1)
+% )).
 
 % Abstract Individual
 
@@ -80,10 +81,11 @@ fof(ax_qualityStructure_taxonomy_world, axiom, (
 )).
 
 % Abstract Individual partial taxonomy instances
+% (tested rule out trivial models)
 
-fof(ax_abstractIndividual_instances, axiom, (
-  set(set1) & quale(quale1) & qualityStructure(qualityStructure1) & qualityDimension(qualityDimension1) & qualitySpace(qualitySpace1) & world(world1)
-)).
+% fof(ax_abstractIndividual_instances, axiom, (
+%   set(set1) & quale(quale1) & qualityStructure(qualityStructure1) & qualityDimension(qualityDimension1) & qualitySpace(qualitySpace1) & world(world1)
+% )).
 
 % Endurant
 
@@ -138,18 +140,19 @@ fof(ax_externallyDependentMode_taxonomy_quaIndividual, axiom, (
 )).
 
 % Endurant partial taxonomy instances
+% (tested rule out trivial models)
 
-fof(ax_endurant_instances, axiom, (
-  substantial(substantial1) & moment(moment1) & object(object1) & collective(collective1) & quantity(quantity1) & intrinsicMoment(intrinsicMoment1) & relator(relator1) & quality(quality1) & mode(mode1) & disposition(disposition1) & externallyDependentMode(externallyDependentMode1) & quaIndividual(quaIndividual1)
-)).
+% fof(ax_endurant_instances, axiom, (
+%   substantial(substantial1) & moment(moment1) & object(object1) & collective(collective1) & quantity(quantity1) & intrinsicMoment(intrinsicMoment1) & relator(relator1) & quality(quality1) & mode(mode1) & disposition(disposition1) & externallyDependentMode(externallyDependentMode1) & quaIndividual(quaIndividual1)
+% )).
 
 % Endurant Type (by ontological nature)
 
-fof(ax_endurantType_taxonomy, axiom, (
+fof(ax_endurantType_taxonomy_nature, axiom, (
   ![X]: ((substantialType(X) | momentType(X)) <=> (endurantType(X)))
 )).
 
-fof(ax_endurantType_partition, axiom, (
+fof(ax_endurantType_partition_nature, axiom, (
   ~?[X]: (substantialType(X) & momentType(X))
 )).
 
@@ -184,18 +187,19 @@ fof(ax_intrinsicMomentType_partition, axiom, (
 )).
 
 % Endurant Type (by ontological nature) partial taxonomy instances
+% (tested rule out trivial models)
 
-fof(ax_endurantType_instances, axiom, (
-  substantialType(substantialType1) & momentType(momentType1) & objectType(objectType1) & collectiveType(collectiveType1) & quantityType(quantityType1) & intrinsicMomentType(intrinsicMomentType1) & relatorType(relatorType1) & qualityType(qualityType1) & modeType(modeType1) & externallyDependentModeType(externallyDependentModeType1) & quaIndividualType(quaIndividualType1)
-)).
+% fof(ax_endurantType_instances_natures, axiom, (
+%   substantialType(substantialType1) & momentType(momentType1) & objectType(objectType1) & collectiveType(collectiveType1) & quantityType(quantityType1) & intrinsicMomentType(intrinsicMomentType1) & relatorType(relatorType1) & qualityType(qualityType1) & modeType(modeType1) & externallyDependentModeType(externallyDependentModeType1) & quaIndividualType(quaIndividualType1)
+% )).
 
 % Endurant Type (by modal properties of types)
 
-fof(ax_endurantType_taxonomy, axiom, (
+fof(ax_endurantType_taxonomy_properties, axiom, (
   ![X]: ((sortal(X) | nonSortal(X)) <=> (endurantType(X)))
 )).
 
-fof(ax_endurantType_partition, axiom, (
+fof(ax_endurantType_partition_properties, axiom, (
   ~?[X]: (sortal(X) & nonSortal(X))
 )).
 
@@ -262,15 +266,16 @@ fof(ax_antiRigidNonSortal_partition, axiom, (
 )).
 
 % Endurant Type (by modal properties of types) partial taxonomy instances
+% (tested rule out trivial models)
 
-fof(ax_endurantType_instances, axiom, (
-  sortal(sortal1) & nonSortal(nonSortal1) & rigidSortal(rigidSortal1) & antiRigidSortal(antiRigidSortal1) & kind(kind1) & subkind(subkind1) & phase(phase1) & role(role1) & category(category1) & mixin(mixin1) & antiRigidNonSortal(antiRigidNonSortal1) & phaseMixin(phaseMixin1) & roleMixin(roleMixin1)
-)).
+% fof(ax_endurantType_instances_properties, axiom, (
+%   sortal(sortal1) & nonSortal(nonSortal1) & rigidSortal(rigidSortal1) & antiRigidSortal(antiRigidSortal1) & kind(kind1) & subkind(subkind1) & phase(phase1) & role(role1) & category(category1) & mixin(mixin1) & antiRigidNonSortal(antiRigidNonSortal1) & phaseMixin(phaseMixin1) & roleMixin(roleMixin1)
+% )).
 
 %%%%%%%%%%% Instance of, Types, and Individuals %%%%%%%%%%
 
 fof(ax_dIof, axiom, (
-  ![X,Y,W]: (iof(X,Y,W) => (individual(X) & type(Y) & world(W)))
+  ![X,Y,W]: (iof(X,Y,W) => (type(Y) & world(W)))
 )).
 
 fof(ax_dType_a1, axiom, (
@@ -291,46 +296,67 @@ fof(ax_twoLevelConstrained_a4, axiom, (
   ~?[X,Y,Z,W]: (type(X) & iof(X,Y,W) & iof(Y,Z,W))
 )).
 
-fof(ax_iofInUse, axiom, (
-  type(t2) & individual(i2) & wolrd(w2) & iof(i2,t2,w2)
-)).
-
-% TODO: (t1) and (t2) do not follow from the previous axioms; we might need an axiom constraining our quantification domain to be limited to things (i.e., "![X]: (thing(X))").
-
-% fof(th_everythingIsAThing_t1, conjecture, (
-%   ![X]: (type(x) | individual(x))
+% fof(ax_iofInUse, axiom, (
+%   type(t2) & individual(i2) & world(w2) & iof(i2,t2,w2)
 % )).
 
+% Ax |= "th_everythingIsAThing_t1"; conjecture comment for convenience
+
+% fof(th_everythingIsAThing_t1, conjecture, (
+%   ![X]: (type(X) | individual(X))
+% )).
+
+% Ax |= "th_thingPartition_t2"; conjecture comment for convenience
+
 % fof(th_thingPartition_t2, conjecture, (
-%   ~?[X]: (type(x) & individual(x))
+%   ~?[X]: (type(X) & individual(X))
 % )).
 
 %%%%%%%% Specialization and Proper Specialization %%%%%%%%
 
+fof(ax_dSpecializes, axiom, (
+  ![X,Y]: (specializes(X,Y) => (type(X) & type(Y)))
+)).
 
+fof(ax_specialization_a5, axiom, (
+  ![T1,T2]: (specializes(T1,T2) <=> (
+    type(T1) & type(T2) & ![W]: (world(W) => ![E]: (iof(E,T1,W) => iof(E,T2,W)))
+  ))
+)).
 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
-% %Specialization
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+fof(ax_properSpecializes_d1, axiom, (
+  ![X,Y]: (properSpecializes(X,Y) <=> (specializes(X,Y) & ~specializes(Y,X)))
+)).
 
+% fof(ax_specializesInUse, axiom, (
+%   type(t3_1) & type(t3_2) & specializes(t3_1,t3_2) & properSpecializes(t3_1,t3_2) & specializes(t3_1,t3_1)
+% )).
 
-% fof(ax_dspecialization_a5, axiom, (
-%   ![T1,T2] :  (specializes(T1,T2) <=> (type(T1) & type(T2) &
-%                     ![W]: (world(W) => ![E]:(iof(E,T1,W) => iof(E,T2,W))))))).
+% Ax |= "th_cyclicSpecializations_t3"; conjecture comment for convenience
 
-% fof(ax_dspecialization_strict_d1, axiom, (
-%   ![T1,T2] :  (strictlySpecializes(T1,T2) <=> (specializes(T1,T2) & ~specializes(T2,T1))))).
+% fof(th_cyclicSpecializations_t3, conjecture, (
+%   ![X,Y]: (specializes(X,Y) => (specializes(X,X) & specializes(Y,Y)))
+% )).
 
-%   % Whenever two types have a common instance, they must share a supertype or a subtype for this instance
-%   fof(ax_nondisjointSameTaxonomy_a6, axiom, (
-%       ![T1,T2]: (![X,W]: ((iof(X,T1,W)&iof(X,T2,W)&~specializes(T1,T2)&~specializes(T2,T1))=>
-%           (
-%               (?[T3]: (specializes(T1,T3)&specializes(T2,T3)&iof(X,T3,W)))|
-%               (?[T3]: (specializes(T3,T1)&specializes(T3,T2)&iof(X,T3,W)))
-%           )
-%           ))
-%   )).
+% Ax |= "th_transitiveSpecializations_t4"; conjecture comment for convenience
 
+% fof(th_transitiveSpecializations_t4, conjecture, (
+%   ![X,Y,Z]: ((specializes(X,Y) & specializes(Y,Z)) => (specializes(X,Z)))
+% )).
+
+fof(ax_sharedSpecializations_a6, axiom, (
+  ![T1,T2]: (?[X,W]: ((iof(X,T1,W) & iof(X,T2,W) & ~specializes(T1,T2) & ~specializes(T2,T1)) => (
+      (?[T3]: (specializes(T1,T3) & specializes(T2,T3) & iof(X,T3,W)))|
+      (?[T3]: (specializes(T3,T1) & specializes(T3,T2) & iof(X,T3,W)))
+  )))
+)).
+
+%%%%%%%%%%%%%%%%% Sortality ans Rigidity %%%%%%%%%%%%%%%%%
+
+% fof(ax_dRigid_a18, axiom, (
+%   ![T]: rigi
+%   ![X,Y]: (properSpecializes(X,Y) <=> (specializes(X,Y) & ~specializes(Y,X)))
+% )).
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % %
