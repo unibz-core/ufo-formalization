@@ -17,9 +17,9 @@
 \newcommand{\BeginInstantationAndSpecialzation}{275}
 \newcommand{\EndInstantationAndSpecialzation}{352}
 \newcommand{\BeginRigidityAndSortality}{354}
-\newcommand{\EndRigidityAndSortality}{560}
-\newcommand{\BeginEndurant}{354}
-\newcommand{\EndEndurant}{560}
+\newcommand{\EndRigidityAndSortality}{599}
+\newcommand{\BeginEndurantsTypesDefinition}{601}
+\newcommand{\EndEndurantsTypesDefinition}{674}
 
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
@@ -71,6 +71,7 @@ This document presents a formalization of the Unified Foundation Ontology (UFO) 
 \subsection{UFO Taxonomy}
 
 % Thing Taxonomy
+\subsubsection{Partial Taxonomy of Thing}
 
 \begin{figure}[ht]
     \centering
@@ -86,6 +87,7 @@ This document presents a formalization of the Unified Foundation Ontology (UFO) 
 ]{ufo_2021.tex}
 
 % Abstract Individual Taxonomy
+\subsubsection{Partial Taxonomy of Abstract Individual}
 
 \begin{figure}[ht]
     \centering
@@ -101,6 +103,7 @@ This document presents a formalization of the Unified Foundation Ontology (UFO) 
 ]{ufo_2021.tex}
 
 % Endurant Taxonomy
+\subsubsection{Partial Taxonomy of Endurant}
 
 \begin{figure}[ht]
     \centering
@@ -116,6 +119,7 @@ This document presents a formalization of the Unified Foundation Ontology (UFO) 
 ]{ufo_2021.tex}
 
 % Endurant Type Taxonomy of Ontological Natures
+\subsubsection{Partial Taxonomy of Endurant Type (on ontological natures)}
 
 \begin{figure}[ht]
     \centering
@@ -131,6 +135,7 @@ This document presents a formalization of the Unified Foundation Ontology (UFO) 
 ]{ufo_2021.tex}
 
 % Endurant Type Taxonomy of Modal Properties of Types
+\subsubsection{Partial Taxonomy of Endurant Type (on modal properties of types)}
 
 \begin{figure}[ht]
     \centering
@@ -146,6 +151,7 @@ This document presents a formalization of the Unified Foundation Ontology (UFO) 
 ]{ufo_2021.tex}
 
 % Types, Individuals, Instantiation, and Specialization
+\subsubsection{Defining Types, Individuals, and Specialization}
 
 \begin{figure}[ht]
     \centering
@@ -161,6 +167,7 @@ This document presents a formalization of the Unified Foundation Ontology (UFO) 
 ]{ufo_2021.tex}
 
 % Sortality and Rigidity
+\subsubsection{Defining Rigidity and Sortality}
 
 \lstinputlisting[
     firstline=\BeginRigidityAndSortality, 
@@ -168,12 +175,13 @@ This document presents a formalization of the Unified Foundation Ontology (UFO) 
     firstnumber=\BeginRigidityAndSortality
 ]{ufo_2021.tex}
 
-% Endurants
+% Endurant Types Definition
+\subsubsection{Defining Endurant Types}
 
 \lstinputlisting[
-    firstline=\BeginEndurant, 
-    lastline=\EndEndurant, 
-    firstnumber=\BeginEndurant
+    firstline=\BeginEndurantsTypesDefinition, 
+    lastline=\EndEndurantsTypesDefinition, 
+    firstnumber=\BeginEndurantsTypesDefinition
 ]{ufo_2021.tex}
 
 % \bibliographystyle{abbrv}

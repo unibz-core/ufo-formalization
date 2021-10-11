@@ -4,11 +4,11 @@
 % Thing
 
 fof(ax_thing_taxonomy, axiom, (
-  ![X]: ((type(X) | individual(X)) <=> (thing(X)))
+  ![X]: ((type_(X) | individual(X)) <=> (thing(X)))
 )).
 
 fof(ax_thing_partition, axiom, (
-  ~?[X]: (type(X) & individual(X))
+  ~?[X]: (type_(X) & individual(X))
 )).
 
 % Individual
@@ -34,7 +34,7 @@ fof(ax_concreteIndividual_partition, axiom, (
 % Type
 
 fof(ax_type_taxonomy, axiom, (
-  ![X]: ((endurantType(X) | perdurantType(X)) <=> (type(X)))
+  ![X]: ((endurantType(X) | perdurantType(X)) <=> (type_(X)))
 )).
 
 fof(ax_type_partition, axiom, (
@@ -45,7 +45,7 @@ fof(ax_type_partition, axiom, (
 % (tested rule out trivial models)
 
 % fof(ax_thing_instances, axiom, (
-%   type(type1) & individual(individual1) & concreteIndividual(concreteIndividual1) & abstractIndividual(abstractIndividual1) & endurant(endurant1) & perdurant(perdurant1) & endurantType(endurantType1) & perdurantType(perdurantType1)
+%   type_(type1) & individual(individual1) & concreteIndividual(concreteIndividual1) & abstractIndividual(abstractIndividual1) & endurant(endurant1) & perdurant(perdurant1) & endurantType(endurantType1) & perdurantType(perdurantType1)
 % )).
 
 % Abstract Individual
@@ -55,13 +55,13 @@ fof(ax_abstractIndividual_taxonomy_quale, axiom, (
 )).
 
 fof(ax_abstractIndividual_taxonomy_set, axiom, (
-  ![X]: (set(X) => (abstractIndividual(X)))
+  ![X]: (set_(X) => (abstractIndividual(X)))
 )).
 
 % Set
 
 fof(ax_set_taxonomy_qualityStructure, axiom, (
-  ![X]: (qualityStructure(X) => (set(X)))
+  ![X]: (qualityStructure(X) => (set_(X)))
 )).
 
 % Quality Structure
@@ -84,7 +84,7 @@ fof(ax_qualityStructure_taxonomy_world, axiom, (
 % (tested rule out trivial models)
 
 % fof(ax_abstractIndividual_instances, axiom, (
-%   set(set1) & quale(quale1) & qualityStructure(qualityStructure1) & qualityDimension(qualityDimension1) & qualitySpace(qualitySpace1) & world(world1)
+%   set_(set1) & quale(quale1) & qualityStructure(qualityStructure1) & qualityDimension(qualityDimension1) & qualitySpace(qualitySpace1) & world(world1)
 % )).
 
 % Endurant
@@ -190,7 +190,7 @@ fof(ax_intrinsicMomentType_partition, axiom, (
 % (tested rule out trivial models)
 
 % fof(ax_endurantType_instances_natures, axiom, (
-%   substantialType(substantialType1) & momentType(momentType1) & objectType(objectType1) & collectiveType(collectiveType1) & quantityType(quantityType1) & intrinsicMomentType(intrinsicMomentType1) & relatorType(relatorType1) & qualityType(qualityType1) & modeType(modeType1) & externallyDependentModeType(externallyDependentModeType1) & quaIndividualType(quaIndividualType1)
+%   substantialType(substantialType1) & momentType(momentType1) & objectType(objectType1) & collectiveType(collectiveType1) & quantityType(quantityType1) & intrinsicMomentType(intrinsicMomentType1) & relatorType(relatorType1) & qualityType(qualityType1) & modeType(modeType1)
 % )).
 
 % Endurant Type (by modal properties of types)
@@ -275,11 +275,11 @@ fof(ax_antiRigidNonSortal_partition, axiom, (
 %%%%%%%%%%% Instance of, Types, and Individuals %%%%%%%%%%
 
 fof(ax_dIof, axiom, (
-  ![X,Y,W]: (iof(X,Y,W) => (type(Y) & world(W)))
+  ![X,Y,W]: (iof(X,Y,W) => (type_(Y) & world(W)))
 )).
 
 fof(ax_dType_a1, axiom, (
-  ![X]: (type(X) <=> (?[Y,W]: iof(Y,X,W)))
+  ![X]: (type_(X) <=> (?[Y,W]: iof(Y,X,W)))
 )).
 
 fof(ax_dIndividual_a2, axiom, (
@@ -289,38 +289,38 @@ fof(ax_dIndividual_a2, axiom, (
 % TODO: confirm whether we are including second-order types in this formalization
 
 fof(ax_multiLevel_a3, axiom, (
-  ![X,Y,W]: (iof(X,Y,W) => (type(X) | individual(X)))
+  ![X,Y,W]: (iof(X,Y,W) => (type_(X) | individual(X)))
 )).
 
 fof(ax_twoLevelConstrained_a4, axiom, (
-  ~?[X,Y,Z,W]: (type(X) & iof(X,Y,W) & iof(Y,Z,W))
+  ~?[X,Y,Z,W]: (type_(X) & iof(X,Y,W) & iof(Y,Z,W))
 )).
 
 % fof(ax_iofInUse, axiom, (
-%   type(t2) & individual(i2) & world(w2) & iof(i2,t2,w2)
+%   type_(t2) & individual(i2) & world(w2) & iof(i2,t2,w2)
 % )).
 
 % Ax |= "th_everythingIsAThing_t1"; conjecture commented for convenience
 
 % fof(th_everythingIsAThing_t1, conjecture, (
-%   ![X]: (type(X) | individual(X))
+%   ![X]: (type_(X) | individual(X))
 % )).
 
 % Ax |= "th_thingPartition_t2"; conjecture commented for convenience
 
 % fof(th_thingPartition_t2, conjecture, (
-%   ~?[X]: (type(X) & individual(X))
+%   ~?[X]: (type_(X) & individual(X))
 % )).
 
 %%%%%%%% Specialization and Proper Specialization %%%%%%%%
 
 fof(ax_dSpecializes, axiom, (
-  ![X,Y]: (specializes(X,Y) => (type(X) & type(Y)))
+  ![X,Y]: (specializes(X,Y) => (type_(X) & type_(Y)))
 )).
 
 fof(ax_specialization_a5, axiom, (
   ![T1,T2]: (specializes(T1,T2) <=> (
-    type(T1) & type(T2) & ![W]: (world(W) => ![E]: (iof(E,T1,W) => iof(E,T2,W)))
+    type_(T1) & type_(T2) & ![W]: (world(W) => ![E]: (iof(E,T1,W) => iof(E,T2,W)))
   ))
 )).
 
@@ -329,7 +329,7 @@ fof(ax_properSpecializes_d1, axiom, (
 )).
 
 % fof(ax_specializesInUse, axiom, (
-%   type(t3_1) & type(t3_2) & specializes(t3_1,t3_2) & properSpecializes(t3_1,t3_2) & specializes(t3_1,t3_1)
+%   type_(t3_1) & type_(t3_2) & specializes(t3_1,t3_2) & properSpecializes(t3_1,t3_2) & specializes(t3_1,t3_1)
 % )).
 
 % Ax |= "th_cyclicSpecializations_t3"; conjecture commented for convenience
@@ -352,6 +352,8 @@ fof(ax_sharedSpecializations_a6, axiom, (
 )).
 
 %%%%%%%%%%%%%%%%% Sortality and Rigidity %%%%%%%%%%%%%%%%%
+
+% Rigidity
 
 % TODO: I don't find we need to attach the "rigid(T)" predicate to the "endurant(T)" predicate like the paper does, so let's review this idea.
 % TODO: verify whether it is a problem not to introduce predicates "world(W1) &" and "world(W2) &" before each instantiation
@@ -395,6 +397,8 @@ fof(ax_dSemiRigid_a20, axiom, (
 % fof(th_semiRigidAntiRigidSpecializationConstraint_t8, conjecture, (
 %   ~![T1,T2]: (semiRigid(T1) & antiRigid(T2) & specializes(T1,T2))
 % )).
+
+% % Sortality
 
 fof(ax_endurantsKind_a21, axiom, (
   ![E]: (endurant(E) => (
@@ -465,16 +469,39 @@ fof(ax_dSortal_a23, axiom, (
 %   ![S]: ((sortal(S)) => (~?[U,U2]: (kind(U) & kind(U2) & specializes(S,U) & specializes(S,U2) & ~(U=U2))))
 % )).
 
+fof(ax_rigidSortalsAreRigidAndSortal_xx, axiom, (
+  ![T]: ((rigidSortal(T)) <=> (rigid(T) & sortal(T)))
+)).
+
+fof(ax_antiRigidSortalsAreAntiRigidAndSortal_xx, axiom, (
+  ![T]: ((antiRigidSortal(T)) <=> (antiRigid(T) & sortal(T)))
+)).
+
+fof(ax_rigidNonSortalsAreRigidAndNonSortal_xx, axiom, (
+  ![T]: ((rigidNonSortal(T)) <=> (rigid(T) & nonSortal(T)))
+)).
+
+fof(ax_antiRigidNonSortalsAreAntiRigidAndNonSortal_xx, axiom, (
+  ![T]: ((antiRigidNonSortal(T)) <=> (antiRigid(T) & nonSortal(T)))
+)).
+
+fof(ax_semiRigidNonSortalsAreSemiRigidAndNonSortal_xx, axiom, (
+  ![T]: ((semiRigidNonSortal(T)) <=> (semiRigid(T) & nonSortal(T)))
+)).
+
 % If we have the taxonomy's axiomatization, then a25 becomes a theorem
 % Ax |= "th_kindAndSubkindAreDisjoint_a25"; conjecture commented for convenience
   
 % fof(th_kindAndSubkindAreDisjoint_a25, conjecture, (
 %   ~?[T]: (kind(T) & subkind(T))
 % )).
-  
-fof(ax_kindAndSubkindAreRigidSortals_a26, axiom, (
-  ![T]: ((kind(T) | subkind(T)) <=> (rigid(T) & sortal(T)))
-)).
+
+% If we have the taxonomy's axiomatization, then a26 becomes a theorem
+% Ax |= "th_kindAndSubkindAreRigidSortals_a26"; conjecture commented for convenience
+
+% fof(th_kindAndSubkindAreRigidSortals_a26, conjecture, (
+%   ![T]: ((kind(T) | subkind(T)) <=> (rigid(T) & sortal(T)))
+% )).
 
 % If we have the taxonomy's axiomatization, then a27 becomes a theorem
 % Ax |= "th_phaseAndRoleAreDisjoint_a27"; conjecture commented for convenience
@@ -483,30 +510,42 @@ fof(ax_kindAndSubkindAreRigidSortals_a26, axiom, (
 %   ~?[T]: (phase(T) & role(T))
 % )).
 
-fof(ax_phaseAndRoleAreAntiRigidSortals_a28, axiom, (
-  ![T]: ((phase(T) | role(T)) <=> (antiRigid(T) & sortal(T)))
-)).
+% If we have the taxonomy's axiomatization, then a28 becomes a theorem
+% Ax |= "th_phaseAndRoleAreAntiRigidSortals_a28"; conjecture commented for convenience
+
+% fof(th_phaseAndRoleAreAntiRigidSortals_a28, conjecture, (
+%   ![T]: ((phase(T) | role(T)) <=> (antiRigid(T) & sortal(T)))
+% )).
 
 % Skipping (a29) because we leave the concept of semi-rigid sortals out of this ontology.
 
-fof(ax_categoriesAreRigidNonSortals_a30, axiom, (
-  ![T]: ((category(T)) <=> (rigid(T) & nonSortal(T)))
-)).
+% If we have the taxonomy's axiomatization, then a30 becomes a theorem
+% Ax |= "th_categoriesAreRigidNonSortals_a30"; conjecture commented for convenience
 
-fof(ax_mixinsAreSemiRigidNonSortals_a30, axiom, (
-  ![T]: ((mixin(T)) <=> (semiRigid(T) & nonSortal(T)))
-)).
+% fof(th_categoriesAreRigidNonSortals_a30, conjecture, (
+%   ![T]: ((category(T)) <=> (rigid(T) & nonSortal(T)))
+% )).
 
 % If we have the taxonomy's axiomatization, then a31 becomes a theorem
-% Ax |= "th_phaseMixinsAndRoleMixinsAreDisjoint_a31"; conjecture commented for convenience
+% Ax |= "th_mixinsAreSemiRigidNonSortals_a31"; conjecture commented for convenience
+
+% fof(th_mixinsAreSemiRigidNonSortals_a31, conjecture, (
+%   ![T]: ((mixin(T)) <=> (semiRigid(T) & nonSortal(T)))
+% )).
+
+% If we have the taxonomy's axiomatization, then a32 becomes a theorem
+% Ax |= "th_phaseMixinAndRoleMixinAreDisjoint_a32"; conjecture commented for convenience
   
-% fof(th_phaseMixinAndRoleMixinAreDisjoint_a31, conjecture, (
+% fof(th_phaseMixinAndRoleMixinAreDisjoint_a32, conjecture, (
 %   ~?[T]: (phaseMixin(T) & roleMixin(T))
 % )).
 
-fof(ax_phaseMixinAndRoleMixinAreAntiRigidSortals_a28, axiom, (
-  ![T]: ((phaseMixin(T) | roleMixin(T)) <=> (antiRigid(T) & nonSortal(T)))
-)).
+% If we have the taxonomy's axiomatization, then a33 becomes a theorem
+% Ax |= "ax_phaseMixinAndRoleMixinAreAntiRigidSortals_a33"; conjecture commented for convenience
+
+% fof(th_phaseMixinAndRoleMixinAreAntiRigidSortals_a33, conjecture, (
+%   ![T]: ((phaseMixin(T) | roleMixin(T)) <=> (antiRigid(T) & nonSortal(T)))
+% )).
 
 % Ax |= "th_leafCategoriesArePairwiseDisjoint_t18"; conjecture commented for convenience
 
@@ -559,6 +598,80 @@ fof(ax_phaseMixinAndRoleMixinAreAntiRigidSortals_a28, axiom, (
 %   ))
 % )).
 
+%%%%%%%%%%%%%%% Endurant Types Definition %%%%%%%%%%%%%%%%
+
+fof(ax_endurantTypeDefinition_xx, axiom, (
+  ![T]: (endurantType(T) <=> (
+    type_(T) & (![E,W]: ((world(W) & iof(E,T,W)) => (endurant(E))))
+  ))
+)).
+
+fof(ax_substantialTypeDefinition_xx, axiom, (
+  ![T]: (substantialType(T) <=> (
+    type_(T) & (![E,W]: ((world(W) & iof(E,T,W)) => (substantial(E))))
+  ))
+)).
+
+fof(ax_momentTypeDefinition_xx, axiom, (
+  ![T]: (momentType(T) <=> (
+    type_(T) & (![E,W]: ((world(W) & iof(E,T,W)) => (moment(E))))
+  ))
+)).
+
+fof(ax_objectTypeDefinition_xx, axiom, (
+  ![T]: (objectType(T) <=> (
+    type_(T) & (![E,W]: ((world(W) & iof(E,T,W)) => (object(E))))
+  ))
+)).
+
+fof(ax_collectiveTypeDefinition_xx, axiom, (
+  ![T]: (collectiveType(T) <=> (
+    type_(T) & (![E,W]: ((world(W) & iof(E,T,W)) => (collective(E))))
+  ))
+)).
+
+fof(ax_quantityTypeDefinition_xx, axiom, (
+  ![T]: (quantityType(T) <=> (
+    type_(T) & (![E,W]: ((world(W) & iof(E,T,W)) => (quantity(E))))
+  ))
+)).
+
+fof(ax_intrinsicMomentTypeDefinition_xx, axiom, (
+  ![T]: (intrinsicMomentType(T) <=> (
+    type_(T) & (![E,W]: ((world(W) & iof(E,T,W)) => (intrinsicMoment(E))))
+  ))
+)).
+
+fof(ax_relatorTypeDefinition_xx, axiom, (
+  ![T]: (relatorType(T) <=> (
+    type_(T) & (![E,W]: ((world(W) & iof(E,T,W)) => (relator(E))))
+  ))
+)).
+
+fof(ax_qualityTypeDefinition_xx, axiom, (
+  ![T]: (qualityType(T) <=> (
+    type_(T) & (![E,W]: ((world(W) & iof(E,T,W)) => (quality(E))))
+  ))
+)).
+
+fof(ax_modeTypeDefinition_xx, axiom, (
+  ![T]: (modeType(T) <=> (
+    type_(T) & (![E,W]: ((world(W) & iof(E,T,W)) => (mode(E))))
+  ))
+)).
+
+fof(ax_endurantTypeDefinition_instances, axiom, (
+  substantial(substantial3) & substantialType(substantialType3)
+)).
+
+% fof(th_world, conjecture, (
+%   ~?[X,Y,Z]: (iof(X,Y,Z) & type_(Z))
+% )).
+
+% fof(ax_endurantTypeDefinition_instances, axiom, (
+%   substantial(substantial3) & moment(moment3) & object(object3) & collective(collective3) & quantity(quantity3) & intrinsicMoment(intrinsicMoment3) & relator(relator3) & quality(quality3) & mode(mode3) & disposition(disposition3) & externallyDependentMode(externallyDependentMode3) & quaIndividual(quaIndividual3) & 
+%   substantialType(substantialType3) & momentType(momentType3) & objectType(objectType3) & collectiveType(collectiveType3) & quantityType(quantityType3) & intrinsicMomentType(intrinsicMomentType3) & relatorType(relatorType3) & qualityType(qualityType3) & modeType(modeType3)
+% )).
 
 
 % %%%%%%%%%%%%%%%%%%%%%%%% Definition of sortality
