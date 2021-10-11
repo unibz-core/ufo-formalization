@@ -358,13 +358,13 @@ fof(ax_sharedSpecializations_a6, axiom, (
 
 fof(ax_dRigid_a18, axiom, (
   ![T]: (rigid(T) <=> (endurantType(T) & (
-    ![X]: ((?[W1]: (world(W1) & iof(X,T,W1))) => (![W2]: (world(W2) & iof(X,T,W2)))
+    ![X]: ((![W1]: (world(W1) & iof(X,T,W1))) => (![W2]: (world(W2) => iof(X,T,W2)))
   ))))
 )).
 
 fof(ax_dAntiRigid_a19, axiom, (
   ![T]: (antiRigid(T) <=> (endurantType(T) & (
-    ![X]: ((?[W1]: (world(W1) & iof(X,T,W1))) => (?[W2]: (world(W2) & ~iof(X,T,W2)))
+    ![X]: ((![W1]: (world(W1) & iof(X,T,W1))) => (?[W2]: (world(W2) & ~iof(X,T,W2)))
   ))))
 )).
 
@@ -378,7 +378,7 @@ fof(ax_dSemiRigid_a20, axiom, (
 %   ![T]: (endurantType(T) <=> (rigid(T) | semiRigid(T) | antiRigid(T)))
 % )).
 
-% Ax |= "th_thEndurantTypeHaveRigidity_t5"; conjecture commented for convenience
+% Ax |= "th_pairwiseDisjointRigidities_t6"; conjecture commented for convenience
 
 % fof(th_pairwiseDisjointRigidities_t6, conjecture, (
 %   ~![T]: ((rigid(T) & semiRigid(T)) | (semiRigid(T) & antiRigid(T)) | (rigid(T) & antiRigid(T)))
@@ -396,17 +396,73 @@ fof(ax_dSemiRigid_a20, axiom, (
 %   ~![T1,T2]: (semiRigid(T1) & antiRigid(T2) & specializes(T1,T2))
 % )).
 
-fof(ax_endurantsUltimateSortal_a21, axiom, (
+fof(ax_endurantsKind_a21, axiom, (
   ![E]: (endurant(E) => (
-    ?[U]: (ultimateSortal(U) & (![W]: (world(W) & iof(E,U,W))))
+    ?[U]: (kind(U) & (![W]: (world(W) & iof(E,U,W))))
   ))
 )).
 
-% fof(ax_uniqueUltimateSortal_a21, axiom, (
-%   ?[E,U,W]: (world(W) & ultimateSortal(U) & iof())
-%   ![E]: (endurant(E) => (
-%     ?[U]: (ultimateSortal(U) & (![W]: (world(W) & iof(E,U,W))))
-%   ))
+fof(ax_uniqueKind_a22, axiom, (
+  ![E,U,W]: ((world(W) & kind(U) & iof(E,U,W)) => (
+    ~?[U2,W2]: (kind(U2) & iof(E,U2,W2) & ~(U = U2))
+  ))
+)).
+
+% Changing "ax_dSortal_a23" from the form it was defined in the paper to "sortals are endurant types that specialize some ultimate sortal" seem to express the same concept while speeding up the execution of SPASS considerably
+
+% fof(ax_dSortal_a23, axiom, (
+%   ![S]: (sortal(S) <=> (endurantType(S) & (?[U]: (kind(U) & (![E,W]: (iof(E,S,W) => iof(E,U,W)))))))
+% )).
+
+fof(ax_dSortal_a23, axiom, (
+  ![S]: ((sortal(S)) <=> (endurantType(S) & (?[U]: (kind(U) & specializes(S,U)))))
+)).
+
+% If we have the taxonomy's axiomatization, then a24 becomes a theorem
+% Ax |= "th_nonSortalsAreEndurantsThatAreNotSortals_a24"; conjecture commented for convenience
+
+% fof(th_nonSortalsAreEndurantsThatAreNotSortals_a24, conjecture, (
+%   ![NS]: ((nonSortal(NS)) <=> (endurantType(NS) & ~sortal(NS)))
+% )).
+
+% Ax |= "th_kindsAreRigid_t9"; conjecture commented for convenience
+
+% fof(th_kindsAreRigid_t9, conjecture, (
+%   ![U]: ((kind(U)) => (rigid(U)))
+% )).
+
+% Ax |= "th_kindsHaveDisjointExtensions_t10"; conjecture commented for convenience
+
+% fof(th_kindsHaveDisjointExtensions_t10, conjecture, (
+%   ![K1,K2]: ((kind(K1) & kind(K2) & ~(K1=K2)) => (
+%     ~?[X,W1,W2]: (world(W1) & world(W2) & iof(X,K1,W1) & iof(X,K2,W2)))
+%   )
+% )).
+
+% Ax |= "th_kindsHaveDisjointTaxonomies_t11"; conjecture commented for convenience
+
+% fof(th_kindsHaveDisjointTaxonomies_t11, conjecture, (
+%   ![K1,K2]: ((kind(K1) & kind(K2) & ~(K1=K2)) => (
+%     ~?[T]: (specializes(T,K1) & specializes(T,K2)))
+%   )
+% )).
+
+% Ax |= "th_kindsAreSortal_t12"; conjecture commented for convenience
+
+% fof(th_kindsAreSortal_t12, conjecture, (
+%   ![K]: ((kind(K)) => (sortal(K)))
+% )).
+
+% Ax |= "th_sortalSpecializeKinds_t13"; conjecture commented for convenience
+
+% fof(th_sortalSpecializeKinds_t13, conjecture, (
+%   ![S]: ((sortal(S)) => (?[K]: (kind(K) & specializes(S,K))))
+% )).
+
+% Ax |= "th_sortalsSpecializeAUniqueKind_t14"; conjecture commented for convenience
+
+% fof(th_sortalsSpecializeAUniqueKind_t14, conjecture, (
+%   ![S]: ((sortal(S)) => (~?[U,U2]: (kind(U) & kind(U2) & specializes(S,U) & specializes(S,U2) & ~(U=U2))))
 % )).
 
 
