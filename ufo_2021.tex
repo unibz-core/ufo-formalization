@@ -465,6 +465,100 @@ fof(ax_dSortal_a23, axiom, (
 %   ![S]: ((sortal(S)) => (~?[U,U2]: (kind(U) & kind(U2) & specializes(S,U) & specializes(S,U2) & ~(U=U2))))
 % )).
 
+% If we have the taxonomy's axiomatization, then a25 becomes a theorem
+% Ax |= "th_kindAndSubkindAreDisjoint_a25"; conjecture commented for convenience
+  
+% fof(th_kindAndSubkindAreDisjoint_a25, conjecture, (
+%   ~?[T]: (kind(T) & subkind(T))
+% )).
+  
+fof(ax_kindAndSubkindAreRigidSortals_a26, axiom, (
+  ![T]: ((kind(T) | subkind(T)) <=> (rigid(T) & sortal(T)))
+)).
+
+% If we have the taxonomy's axiomatization, then a27 becomes a theorem
+% Ax |= "th_phaseAndRoleAreDisjoint_a27"; conjecture commented for convenience
+  
+% fof(th_phaseAndRoleAreDisjoint_a27, conjecture, (
+%   ~?[T]: (phase(T) & role(T))
+% )).
+
+fof(ax_phaseAndRoleAreAntiRigidSortals_a28, axiom, (
+  ![T]: ((phase(T) | role(T)) <=> (antiRigid(T) & sortal(T)))
+)).
+
+% Skipping (a29) because we leave the concept of semi-rigid sortals out of this ontology.
+
+fof(ax_categoriesAreRigidNonSortals_a30, axiom, (
+  ![T]: ((category(T)) <=> (rigid(T) & nonSortal(T)))
+)).
+
+fof(ax_mixinsAreSemiRigidNonSortals_a30, axiom, (
+  ![T]: ((mixin(T)) <=> (semiRigid(T) & nonSortal(T)))
+)).
+
+% If we have the taxonomy's axiomatization, then a31 becomes a theorem
+% Ax |= "th_phaseMixinsAndRoleMixinsAreDisjoint_a31"; conjecture commented for convenience
+  
+% fof(th_phaseMixinAndRoleMixinAreDisjoint_a31, conjecture, (
+%   ~?[T]: (phaseMixin(T) & roleMixin(T))
+% )).
+
+fof(ax_phaseMixinAndRoleMixinAreAntiRigidSortals_a28, axiom, (
+  ![T]: ((phaseMixin(T) | roleMixin(T)) <=> (antiRigid(T) & nonSortal(T)))
+)).
+
+% Ax |= "th_leafCategoriesArePairwiseDisjoint_t18"; conjecture commented for convenience
+
+% fof(th_leafCategoriesArePairwiseDisjoint_t18, conjecture, (
+%   ~?[T]: (endurantType(T) & (
+%     (
+%       (kind(T) & subkind(T))
+%       | (kind(T) & phase(T))
+%       | (kind(T) & role(T))
+%       | (kind(T) & category(T))
+%       | (kind(T) & mixin(T))
+%       | (kind(T) & phaseMixin(T))
+%       | (kind(T) & roleMixin(T))
+%     ) | (
+%       (subkind(T) & phase(T))
+%       | (subkind(T) & role(T))
+%       | (subkind(T) & category(T))
+%       | (subkind(T) & mixin(T))
+%       | (subkind(T) & phaseMixin(T))
+%       | (subkind(T) & roleMixin(T))
+%     ) | (
+%       (phase(T) & role(T))
+%       | (phase(T) & category(T))
+%       | (phase(T) & mixin(T))
+%       | (phase(T) & phaseMixin(T))
+%       | (phase(T) & roleMixin(T))
+%     ) | (
+%       (role(T) & category(T))
+%       | (role(T) & mixin(T))
+%       | (role(T) & phaseMixin(T))
+%       | (role(T) & roleMixin(T))
+%     ) | (
+%       (category(T) & mixin(T))
+%       | (category(T) & phaseMixin(T))
+%       | (category(T) & roleMixin(T))
+%     ) | (
+%       (mixin(T) & phaseMixin(T))
+%       | (mixin(T) & roleMixin(T))
+%     ) | (
+%       (phaseMixin(T) & roleMixin(T))
+%     )
+%   ))
+% )).
+
+% Ax |= "th_leafCategoriesCompletelyCategorizeAllEndurantTypes_t19"; conjecture commented for convenience
+  
+% fof(th_leafCategoriesCompletelyCategorizeAllEndurantTypes_t19, conjecture, (
+%   ![T]: (endurantType(T) => (
+%     kind(T) | subkind(T) | phase(T) | role(T) | category(T) | mixin(T) | phaseMixin(T) | roleMixin(T)
+%   ))
+% )).
+
 
 
 % %%%%%%%%%%%%%%%%%%%%%%%% Definition of sortality
