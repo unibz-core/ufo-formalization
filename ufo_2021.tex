@@ -625,71 +625,208 @@ fof(ax_semiRigidNonSortalsAreSemiRigidAndNonSortal_xx, axiom, (
 %   endurant(e6_1) & endurant(e6_2) & world(w6) & kind(k6_1) & kind(k6_2) & iof(e6_1,k6_1,w6) & iof(e6_1,k6_1,w6) & ~(k6_1=k6_2)
 % )).
 
-%%%%%%%%%%%%%%% Endurant Types Definition %%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%% Types Definition %%%%%%%%%%%%%%%%%%%%
 
-fof(ax_endurantTypeDefinition_xx, axiom, (
+% Defining the taxonomy of types of ontological natures through the categorization of the taxonomy of concrete individuals
+
+fof(ax_perdurantTypeDefinition_a44, axiom, (
+  ![T]: (perdurantType(T) <=> (
+    type_(T) & (![P,W]: ((world(W) & iof(P,T,W)) => (perdurant(P))))
+  ))
+)).
+
+fof(ax_endurantTypeDefinition_a44, axiom, (
   ![T]: (endurantType(T) <=> (
     type_(T) & (![E,W]: ((world(W) & iof(E,T,W)) => (endurant(E))))
   ))
 )).
 
-fof(ax_substantialTypeDefinition_xx, axiom, (
+fof(ax_substantialTypeDefinition_a44, axiom, (
   ![T]: (substantialType(T) <=> (
     type_(T) & (![E,W]: ((world(W) & iof(E,T,W)) => (substantial(E))))
   ))
 )).
 
-fof(ax_momentTypeDefinition_xx, axiom, (
+fof(ax_momentTypeDefinition_a44, axiom, (
   ![T]: (momentType(T) <=> (
     type_(T) & (![E,W]: ((world(W) & iof(E,T,W)) => (moment(E))))
   ))
 )).
 
-fof(ax_objectTypeDefinition_xx, axiom, (
+fof(ax_objectTypeDefinition_a44, axiom, (
   ![T]: (objectType(T) <=> (
     type_(T) & (![E,W]: ((world(W) & iof(E,T,W)) => (object(E))))
   ))
 )).
 
-fof(ax_collectiveTypeDefinition_xx, axiom, (
+fof(ax_collectiveTypeDefinition_a44, axiom, (
   ![T]: (collectiveType(T) <=> (
     type_(T) & (![E,W]: ((world(W) & iof(E,T,W)) => (collective(E))))
   ))
 )).
 
-fof(ax_quantityTypeDefinition_xx, axiom, (
+fof(ax_quantityTypeDefinition_a44, axiom, (
   ![T]: (quantityType(T) <=> (
     type_(T) & (![E,W]: ((world(W) & iof(E,T,W)) => (quantity(E))))
   ))
 )).
 
-fof(ax_intrinsicMomentTypeDefinition_xx, axiom, (
+fof(ax_intrinsicMomentTypeDefinition_a44, axiom, (
   ![T]: (intrinsicMomentType(T) <=> (
     type_(T) & (![E,W]: ((world(W) & iof(E,T,W)) => (intrinsicMoment(E))))
   ))
 )).
 
-fof(ax_relatorTypeDefinition_xx, axiom, (
+fof(ax_relatorTypeDefinition_a44, axiom, (
   ![T]: (relatorType(T) <=> (
     type_(T) & (![E,W]: ((world(W) & iof(E,T,W)) => (relator(E))))
   ))
 )).
 
-fof(ax_qualityTypeDefinition_xx, axiom, (
+fof(ax_qualityTypeDefinition_a44, axiom, (
   ![T]: (qualityType(T) <=> (
     type_(T) & (![E,W]: ((world(W) & iof(E,T,W)) => (quality(E))))
   ))
 )).
 
-fof(ax_modeTypeDefinition_xx, axiom, (
+fof(ax_modeTypeDefinition_a44, axiom, (
   ![T]: (modeType(T) <=> (
     type_(T) & (![E,W]: ((world(W) & iof(E,T,W)) => (mode(E))))
   ))
 )).
 
-% Endurant Types Definition
+% Types Definition
 % (tested to rule out trivial models)
+% TODO: investigate why we cannot list four different endurant types (it may have something to do with "intrinsicMoment" and "intrinsicMomentType")
 
-fof(ax_instances, axiom, (
-  objectType(ot7)
+% fof(ax_typesDefinitionsInstances, axiom, (
+%   objectType(ot7) & collectiveType(ct7) & modeType(mt7)
+% )).
+
+% Ax |= "th_leafCategoriesArePairwiseDisjoint_t21"; conjecture commented for convenience
+% Having the previously defined taxonomy, this should be quite trivial
+  
+% fof(th_leafCategoriesArePairwiseDisjoint_t21, conjecture, (
+%   ~?[T]: (type_(T) & (
+%     (
+%       (objectType(T) & collectiveType(T)) | (objectType(T) & quantityType(T)) | (objectType(T) & modeType(T)) | (objectType(T) & qualityType(T)) | (objectType(T) & relatorType(T)) | (objectType(T) & perdurantType(T))
+%     ) | (
+%       (collectiveType(T) & quantityType(T)) | (collectiveType(T) & modeType(T)) | (collectiveType(T) & qualityType(T)) | (collectiveType(T) & relatorType(T)) | (collectiveType(T) & perdurantType(T))
+%     ) | (
+%       (quantityType(T) & modeType(T)) | (quantityType(T) & qualityType(T)) | (quantityType(T) & relatorType(T)) | (quantityType(T) & perdurantType(T))
+%     ) | (
+%       (modeType(T) & qualityType(T)) | (modeType(T) & relatorType(T)) | (modeType(T) & perdurantType(T))
+%     ) | (
+%       (qualityType(T) & relatorType(T)) | (qualityType(T) & perdurantType(T))
+%     ) | (
+%       relatorType(T) & perdurantType(T)
+%     )
+%   ))
+% )).
+
+% Ultimate Sortals Definitions (by ontological nature)
+
+fof(ax_objectKindDefinition_a45, axiom, (
+  ![T]: (objectKind(T) <=> (objectType(T) & kind(T)))
 )).
+
+fof(ax_collectiveKindDefinition_a45, axiom, (
+  ![T]: (collectiveKind(T) <=> (collectiveType(T) & kind(T)))
+)).
+
+fof(ax_quantityKindDefinition_a45, axiom, (
+  ![T]: (quantityKind(T) <=> (quantityType(T) & kind(T)))
+)).
+
+fof(ax_modeKindDefinition_a45, axiom, (
+  ![T]: (modeKind(T) <=> (modeType(T) & kind(T)))
+)).
+
+fof(ax_qualityKindDefinition_a45, axiom, (
+  ![T]: (qualityKind(T) <=> (qualityType(T) & kind(T)))
+)).
+
+fof(ax_relatorKindDefinition_a45, axiom, (
+  ![T]: (relatorKind(T) <=> (relatorType(T) & kind(T)))
+)).
+
+% Ultimate sortals (by ontological nature) instances
+% (tested to rule out trivial models)
+% TODO: investigate why we cannot list all different types of ultimate sortals at once
+
+% fof(ax_typesDefinitionsInstances, axiom, (
+%   objectKind(ok9) & collectiveKind(ck9) & quantityKind(quank9) & relatorKind(rk9) & modeKind(mk9) & qualityKind(qualk9)
+% )).
+
+% Skipping (t22) because (a21) makes it trivial
+
+fof(ax_typesDefinitionsInstances_a46, axiom, (
+  ![E]: (endurant(E) => (
+    ?[K]: ((objectKind(K) | collectiveKind(K) | quantityKind(K) | modeKind(K) | qualityKind(K) | relatorKind(K))
+    & (![W]: (iof(E,K,W))))
+  ))
+)).
+
+% Ax |= "th_endurantSortalsCompleteness_t23"; conjecture commented for convenience
+% Thanks to the taxonomy, we already have "sortal(T) => endurantType(T)", but I leave it like this to be consistent with the paper
+
+% fof(th_endurantSortalsCompleteness_t23, conjecture, (
+%   ![T]: ((endurantType(T) & sortal(T)) => (objectKind(T) | collectiveKind(T) | quantityKind(T) | qualityKind(T) | modeKind(T) | relatorKind(T) | phase(T) | role(T)))
+% )).
+
+% Ax |= "th_objectTypesSpecializeAKindOfSameNature_t24"; conjecture commented for convenience
+
+% fof(th_objectTypesSpecializeAKindOfSameNature_t24, conjecture, (
+%   ![T]: ((objectType(T) & sortal(T)) <=> (?[K]: (objectKind(K) & specializes(T,K))))
+% )).
+
+% Ax |= "th_collectiveTypesSpecializeAKindOfSameNature_t24"; conjecture commented for convenience
+
+% fof(th_collectiveTypesSpecializeAKindOfSameNature_t24, conjecture, (
+%   ![T]: ((collectiveType(T) & sortal(T)) <=> (?[K]: (collectiveKind(K) & specializes(T,K))))
+% )).
+
+% Ax |= "th_quantityTypesSpecializeAKindOfSameNature_t24"; conjecture commented for convenience
+
+% fof(th_quantityTypesSpecializeAKindOfSameNature_t24, conjecture, (
+%   ![T]: ((quantityType(T) & sortal(T)) <=> (?[K]: (quantityKind(K) & specializes(T,K))))
+% )).
+
+% Ax |= "th_modeTypesSpecializeAKindOfSameNature_t24"; conjecture commented for convenience
+
+% fof(th_modeTypesSpecializeAKindOfSameNature_t24, conjecture, (
+%   ![T]: ((modeType(T) & sortal(T)) <=> (?[K]: (modeKind(K) & specializes(T,K))))
+% )).
+
+% Ax |= "th_qualityTypesSpecializeAKindOfSameNature_t24"; conjecture commented for convenience
+
+% fof(th_qualityTypesSpecializeAKindOfSameNature_t24, conjecture, (
+%   ![T]: ((qualityType(T) & sortal(T)) <=> (?[K]: (qualityKind(K) & specializes(T,K))))
+% )).
+
+% Ax |= "th_relatorTypesSpecializeAKindOfSameNature_t24"; conjecture commented for convenience
+
+% fof(th_relatorTypesSpecializeAKindOfSameNature_t24, conjecture, (
+%   ![T]: ((relatorType(T) & sortal(T)) <=> (?[K]: (relatorKind(K) & specializes(T,K))))
+% )).
+
+% Ax |= "th_sortalLeafCategoriesAreDisjoint_t25"; conjecture commented for convenience
+
+% fof(th_sortalLeafCategoriesAreDisjoint_t25, conjecture, (
+%   ![T]: (objectKind(T) => (~(collectiveKind(T) | quantityKind(T) | modeKind(T) | qualityKind(T) | relatorKind(T) | category(T) | mixin(T) | phaseMixin(T) | roleMixin(T))))
+%   & ![T]: (collectiveKind(T) => (~(objectKind(T) | quantityKind(T) | modeKind(T) | qualityKind(T) | relatorKind(T) | category(T) | mixin(T) | phaseMixin(T) | roleMixin(T))))
+%   & ![T]: (quantityKind(T) => (~(objectKind(T) | collectiveKind(T) | modeKind(T) | qualityKind(T) | relatorKind(T) | category(T) | mixin(T) | phaseMixin(T) | roleMixin(T))))
+%   & ![T]: (modeKind(T) => (~(objectKind(T) | quantityKind(T) | collectiveKind(T) | qualityKind(T) | relatorKind(T) | category(T) | mixin(T) | phaseMixin(T) | roleMixin(T))))
+%   & ![T]: (qualityKind(T) => (~(objectKind(T) | quantityKind(T) | modeKind(T) | collectiveKind(T) | relatorKind(T) | category(T) | mixin(T) | phaseMixin(T) | roleMixin(T))))
+%   & ![T]: (relatorKind(T) => (~(objectKind(T) | quantityKind(T) | modeKind(T) | qualityKind(T) | collectiveKind(T) | category(T) | mixin(T) | phaseMixin(T) | roleMixin(T))))
+%   & ![T]: (category(T) => (~(objectKind(T) | quantityKind(T) | modeKind(T) | qualityKind(T) | relatorKind(T) | collectiveKind(T) | mixin(T) | phaseMixin(T) | roleMixin(T))))
+%   & ![T]: (mixin(T) => (~(objectKind(T) | quantityKind(T) | modeKind(T) | qualityKind(T) | relatorKind(T) | category(T) | collectiveKind(T) | phaseMixin(T) | roleMixin(T))))
+%   & ![T]: (phaseMixin(T) => (~(objectKind(T) | quantityKind(T) | modeKind(T) | qualityKind(T) | relatorKind(T) | category(T) | mixin(T) | collectiveKind(T) | roleMixin(T))))
+%   & ![T]: (roleMixin(T) => (~(objectKind(T) | quantityKind(T) | modeKind(T) | qualityKind(T) | relatorKind(T) | category(T) | mixin(T) | phaseMixin(T) | collectiveKind(T))))
+% )).
+
+% Ax |= "th_sortalLeafCategoriesAreComplete_t26"; conjecture commented for convenience
+
+% fof(th_sortalLeafCategoriesAreComplete_t26, conjecture, (
+%   ![T]: ((endurantType(T)) => (objectKind(T) | collectiveKind(T) | quantityKind(T) | qualityKind(T) | modeKind(T) | relatorKind(T) | phase(T) | role(T) | category(T) | mixin(T) | phaseMixin(T) | roleMixin(T)))
+% )).
