@@ -58,6 +58,10 @@ fof(ax_abstractIndividual_taxonomy_set, axiom, (
   ![X]: (set_(X) => (abstractIndividual(X)))
 )).
 
+fof(ax_abstractIndividual_taxonomy_world, axiom, (
+  ![X]: (world(X) => (abstractIndividual(X)))
+)).
+
 % Set
 
 fof(ax_set_taxonomy_qualityStructure, axiom, (
@@ -72,12 +76,6 @@ fof(ax_qualityStructure_taxonomy, axiom, (
 
 fof(ax_qualityStructure_partition, axiom, (
   ~?[X]: (qualityDimension(X) & qualitySpace(X))
-)).
-
-% TODO: review the definition of "world" as a subtype of "qualityStructure"
-
-fof(ax_qualityStructure_taxonomy_world, axiom, (
-  ![X]: (world(X) => (qualityStructure(X)))
 )).
 
 % Abstract Individual partial taxonomy instances
@@ -415,12 +413,8 @@ fof(ax_dSemiRigid_a20, axiom, (
 
 fof(ax_endurantsKind_a21, axiom, (
   ![E]: (endurant(E) => (
-    ?[U]: (kind(U) & (![W]: (world(W) & iof(E,U,W))))
+    ?[U]: (kind(U) & (![W]: (world(W) => iof(E,U,W))))
   ))
-)).
-
-fof(ax_instances, axiom, (
-  endurant(ex)
 )).
 
 fof(ax_uniqueKind_a22, axiom, (
@@ -489,9 +483,9 @@ fof(ax_dSortal_a23, axiom, (
 % Sortality properties
 % (tested to rule out trivial models)
 
-fof(ax_sortalityInUse, axiom, (
-  endurantType(t4_1) & endurantType(t4_2) & endurantType(t4_3) & rigid(t4_1) & semiRigid(t4_2) & antiRigid(t4_3) & properSpecializes(t4_1,t4_2) & properSpecializes(t4_3,t4_1)
-)).
+% fof(ax_sortalityInUse, axiom, (
+%   endurant(e5_1) & endurant(e5_2) & world(w5) & kind(k5_1) & kind(k5_2) & iof(e5_1,k5_1,w5) & iof(e5_1,k5_1,w5) & ~(k5_1=k5_2)
+% )).
 
 % Sortality + Rigidity
 
@@ -624,77 +618,78 @@ fof(ax_semiRigidNonSortalsAreSemiRigidAndNonSortal_xx, axiom, (
 %   ))
 % )).
 
+% Sortality and rigidity properties combined
+% (tested to rule out trivial models)
+
+% fof(ax_sortalityAndRigidityInUse, axiom, (
+%   endurant(e6_1) & endurant(e6_2) & world(w6) & kind(k6_1) & kind(k6_2) & iof(e6_1,k6_1,w6) & iof(e6_1,k6_1,w6) & ~(k6_1=k6_2)
+% )).
+
 %%%%%%%%%%%%%%% Endurant Types Definition %%%%%%%%%%%%%%%%
 
-% fof(ax_endurantTypeDefinition_xx, axiom, (
-%   ![T]: (endurantType(T) <=> (
-%     type_(T) & (![E,W]: ((world(W) & iof(E,T,W)) => (endurant(E))))
-%   ))
-% )).
-
-% fof(ax_substantialTypeDefinition_xx, axiom, (
-%   ![T]: (substantialType(T) <=> (
-%     type_(T) & (![E,W]: ((world(W) & iof(E,T,W)) => (substantial(E))))
-%   ))
-% )).
-
-% fof(ax_momentTypeDefinition_xx, axiom, (
-%   ![T]: (momentType(T) <=> (
-%     type_(T) & (![E,W]: ((world(W) & iof(E,T,W)) => (moment(E))))
-%   ))
-% )).
-
-% fof(ax_objectTypeDefinition_xx, axiom, (
-%   ![T]: (objectType(T) <=> (
-%     type_(T) & (![E,W]: ((world(W) & iof(E,T,W)) => (object(E))))
-%   ))
-% )).
-
-% fof(ax_collectiveTypeDefinition_xx, axiom, (
-%   ![T]: (collectiveType(T) <=> (
-%     type_(T) & (![E,W]: ((world(W) & iof(E,T,W)) => (collective(E))))
-%   ))
-% )).
-
-% fof(ax_quantityTypeDefinition_xx, axiom, (
-%   ![T]: (quantityType(T) <=> (
-%     type_(T) & (![E,W]: ((world(W) & iof(E,T,W)) => (quantity(E))))
-%   ))
-% )).
-
-% fof(ax_intrinsicMomentTypeDefinition_xx, axiom, (
-%   ![T]: (intrinsicMomentType(T) <=> (
-%     type_(T) & (![E,W]: ((world(W) & iof(E,T,W)) => (intrinsicMoment(E))))
-%   ))
-% )).
-
-% fof(ax_relatorTypeDefinition_xx, axiom, (
-%   ![T]: (relatorType(T) <=> (
-%     type_(T) & (![E,W]: ((world(W) & iof(E,T,W)) => (relator(E))))
-%   ))
-% )).
-
-% fof(ax_qualityTypeDefinition_xx, axiom, (
-%   ![T]: (qualityType(T) <=> (
-%     type_(T) & (![E,W]: ((world(W) & iof(E,T,W)) => (quality(E))))
-%   ))
-% )).
-
-% fof(ax_modeTypeDefinition_xx, axiom, (
-%   ![T]: (modeType(T) <=> (
-%     type_(T) & (![E,W]: ((world(W) & iof(E,T,W)) => (mode(E))))
-%   ))
-% )).
-
-fof(ax_endurantTypeDefinition_instances, axiom, (
-  endurant(ex) & endurantType(tx)
+fof(ax_endurantTypeDefinition_xx, axiom, (
+  ![T]: (endurantType(T) <=> (
+    type_(T) & (![E,W]: ((world(W) & iof(E,T,W)) => (endurant(E))))
+  ))
 )).
 
-% fof(th_world, conjecture, (
-%   ~?[X,Y,Z]: (iof(X,Y,Z) & type_(Z))
-% )).
+fof(ax_substantialTypeDefinition_xx, axiom, (
+  ![T]: (substantialType(T) <=> (
+    type_(T) & (![E,W]: ((world(W) & iof(E,T,W)) => (substantial(E))))
+  ))
+)).
 
-% fof(ax_endurantTypeDefinition_instances, axiom, (
-%   substantial(substantial3) & moment(moment3) & object(object3) & collective(collective3) & quantity(quantity3) & intrinsicMoment(intrinsicMoment3) & relator(relator3) & quality(quality3) & mode(mode3) & disposition(disposition3) & externallyDependentMode(externallyDependentMode3) & quaIndividual(quaIndividual3) & 
-%   substantialType(substantialType3) & momentType(momentType3) & objectType(objectType3) & collectiveType(collectiveType3) & quantityType(quantityType3) & intrinsicMomentType(intrinsicMomentType3) & relatorType(relatorType3) & qualityType(qualityType3) & modeType(modeType3)
-% )).
+fof(ax_momentTypeDefinition_xx, axiom, (
+  ![T]: (momentType(T) <=> (
+    type_(T) & (![E,W]: ((world(W) & iof(E,T,W)) => (moment(E))))
+  ))
+)).
+
+fof(ax_objectTypeDefinition_xx, axiom, (
+  ![T]: (objectType(T) <=> (
+    type_(T) & (![E,W]: ((world(W) & iof(E,T,W)) => (object(E))))
+  ))
+)).
+
+fof(ax_collectiveTypeDefinition_xx, axiom, (
+  ![T]: (collectiveType(T) <=> (
+    type_(T) & (![E,W]: ((world(W) & iof(E,T,W)) => (collective(E))))
+  ))
+)).
+
+fof(ax_quantityTypeDefinition_xx, axiom, (
+  ![T]: (quantityType(T) <=> (
+    type_(T) & (![E,W]: ((world(W) & iof(E,T,W)) => (quantity(E))))
+  ))
+)).
+
+fof(ax_intrinsicMomentTypeDefinition_xx, axiom, (
+  ![T]: (intrinsicMomentType(T) <=> (
+    type_(T) & (![E,W]: ((world(W) & iof(E,T,W)) => (intrinsicMoment(E))))
+  ))
+)).
+
+fof(ax_relatorTypeDefinition_xx, axiom, (
+  ![T]: (relatorType(T) <=> (
+    type_(T) & (![E,W]: ((world(W) & iof(E,T,W)) => (relator(E))))
+  ))
+)).
+
+fof(ax_qualityTypeDefinition_xx, axiom, (
+  ![T]: (qualityType(T) <=> (
+    type_(T) & (![E,W]: ((world(W) & iof(E,T,W)) => (quality(E))))
+  ))
+)).
+
+fof(ax_modeTypeDefinition_xx, axiom, (
+  ![T]: (modeType(T) <=> (
+    type_(T) & (![E,W]: ((world(W) & iof(E,T,W)) => (mode(E))))
+  ))
+)).
+
+% Endurant Types Definition
+% (tested to rule out trivial models)
+
+fof(ax_instances, axiom, (
+  objectType(ot7)
+)).
