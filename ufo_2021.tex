@@ -760,7 +760,7 @@ fof(ax_relatorKindDefinition_a45, axiom, (
 
 % Skipping (t22) because (a21) makes it trivial
 
-fof(ax_typesDefinitionsInstances_a46, axiom, (
+fof(ax_endurantsInstantiateEndurantKindsOfSomeNature_a46, axiom, (
   ![E]: (endurant(E) => (
     ?[K]: ((objectKind(K) | collectiveKind(K) | quantityKind(K) | modeKind(K) | qualityKind(K) | relatorKind(K))
     & (![W]: (iof(E,K,W))))
@@ -829,4 +829,104 @@ fof(ax_typesDefinitionsInstances_a46, axiom, (
 
 % fof(th_sortalLeafCategoriesAreComplete_t26, conjecture, (
 %   ![T]: ((endurantType(T)) => (objectKind(T) | collectiveKind(T) | quantityKind(T) | qualityKind(T) | modeKind(T) | relatorKind(T) | phase(T) | role(T) | category(T) | mixin(T) | phaseMixin(T) | roleMixin(T)))
+% )).
+
+%%%%%%%%%%%%%%%%%%%%%%% Mereology %%%%%%%%%%%%%%%%%%%%%%%%
+
+% TODO: review whether it is necessary to reduce mereology to concrete individuals; I am leaving this axiom out for the moment
+
+% fof(ax_partArguments, axiom, (
+%   ![X,Y]: (part(X,Y) => (concreteIndividual(X) & concreteIndividual(Y)))
+% )).
+
+fof(ax_reflexiveParthood, axiom, (
+  ![X]: (partOf(X,X))
+)).
+
+fof(ax_antiSymmetricParthood_a47, axiom, (
+  ![X,Y]: ((partOf(X,Y) & partOf(Y,X)) => (X=Y))
+)).
+
+fof(ax_antiSymmetricParthood_a48, axiom, (
+  ![X,Y]: ((partOf(X,Y) & partOf(Y,X)) => (X=Y))
+)).
+
+fof(ax_transitiveParthood_a49, axiom, (
+  ![X,Y,Z]: ((partOf(X,Y) & partOf(Y,Z)) => (partOf(X,Z)))
+)).
+
+fof(ax_overlappingWholes_a50, axiom, (
+  ![X,Y]: ((overlap(X,Y)) <=> (?[Z]: (partOf(Z,X) & partOf(Z,Y))))
+)).
+
+fof(ax_strongSupplementation_a51, axiom, (
+  ![X,Y]: (~partOf(X,Y) <=> ?[Z]: (partOf(Z,X) & ~overlap(Z,Y)))
+)).
+
+fof(ax_properPart_a52, axiom, (
+  ![X,Y]: (~properPartOf(X,Y) <=> (partOf(X,Y) & ~partOf(Y,X)))
+)).
+
+fof(ax_binarySum_a53, axiom, (
+  ![X,Y,Z]: (sum(Z,X,Y) <=> ![W]: (overlap(W,Z) <=> (overlap(W,X) | overlap(W,Y))))
+)).
+
+fof(ax_binarySum_a53, axiom, (
+  ![X,Y,Z]: (sum(Z,X,Y) <=> ![W]: (overlap(W,Z) <=> (overlap(W,X) | overlap(W,Y))))
+)).
+
+% TODO: check whether it is necessary to introduce fusion and existence of sums, and how to do it
+
+% Mereology in use
+% (tested to rule out trivial models)
+
+% fof(ax_mereologyInUse, axiom, (
+%   concreteIndividual(ci10_1) & concreteIndividual(ci10_2) & concreteIndividual(ci10_3) & concreteIndividual(ci10_4) & concreteIndividual(ci10_5) & ~(ci10_1=ci10_2) & ~(ci10_2=ci10_3) & ~(ci10_3=ci10_4) & ~(ci10_4=ci10_5) & properPart(ci10_1,ci10_2) & properPart(ci10_3,ci10_4) & sum(ci10_5,ci10_3,ci10_4)
+% )).
+
+%%%%%%%%%%%%%%%%%%%%%%% Composition %%%%%%%%%%%%%%%%%%%%%%
+
+% TODO: review why we need to constrain functions to hold between endurants and types only (not even "endurant types")
+
+fof(ax_function, axiom,  (
+  ![X,Y]: (function(X,Y) => (endurant(X) & type_(Y)))
+)).
+
+fof(ax_genericFunctionalDependence_a55, axiom, (
+  ![T1,T2,W]: (gfd(T1,T2,W) <=> 
+    ![E1]: ((iof(T1,E1,W) & function(T1,E1)) => ?[E2]: (~(E1=E2) & iof(T2,E2,W) & function(T2,E2))))
+)).
+
+fof(ax_individualFunctionalDependence_a56, axiom, (
+  ![E1,T1,E2,T2,W]: (ifd(E1,T1,E2,T2,W) <=> (
+    gfd(T1,T2,W) & iof(E1,T1,W) & iof(E2,T2,W) & (function(E1,T1) => function(E2,T2))
+  ))
+)).
+
+fof(ax_componentOf_a57, axiom, (
+  ![E1,T1,E2,T2,W]: (componentOf(E1,T1,E2,T2,W) <=> (properPartOf(E1,E2) & ifd(E1,T1,E2,T2,W)))
+)).
+
+% Composition in use
+% (tested to rule out trivial models)
+
+% fof(ax_compositionInUse, axiom, (
+%   componentOf(e11_1,t11_1,e11_2,t11_2,w11) & ~(e11_1=e11_2) & ~(e11_1=t11_1) & ~(e11_2=t11_2) & ~(e11_1=t11_2) & ~(e11_2=t11_1) & ~(t11_1=t11_2)
+% )).
+
+%%%%%%%%%%%%%%%%%%%%%% Constitution %%%%%%%%%%%%%%%%%%%%%%
+
+fof(ax_constitutedByInvolvedNatures_a58, axiom, (
+  ![X,Y,W]: (constitutedBy(X,Y,W) => ((endurant(X) <=> endurant(Y)) & (perdurant(X) <=> perdurant(Y)) & world(W)))
+)).
+
+fof(ax_constitutedByDifferentKinds_a59, axiom, (
+  ![E1,E2,T1,T2,W]: ((constitutedBy(E1,E2,W) & iof(E1,T1,W) & iof(E2,T2,W) & kind(T1) & kind(T2)) => (~(T1=T2)))
+)).
+
+% Constitution in use
+% (tested to rule out trivial models)
+
+% fof(ax_constitutionInUse, axiom, (
+%   endurant(e12_1) & endurant(e12_2) & objectKind(k12_1) & objectKind(k12_2) & world(w12) & ~(k12_1=k12_2) & iof(e12_1,k12_1,w12) & iof(e12_2,k12_2,w12) & constitutedBy(e12_1,e12_2,w12)
 % )).
