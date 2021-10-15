@@ -979,12 +979,45 @@ fof(ax_existentiallyIndependentOf_a66, axiom, (
 % Existential dependence in use
 % (tested to rule out trivial models)
 
-fof(ax_constitutionInUse, axiom, (
-  object(e13_1) & object(e13_2) & object(e13_3) & ~(e13_1=e13_2) & ~(e13_1=e13_3) & ~(e13_2=e13_3) & existentiallyDependsOn(e13_2,e13_1) & existentiallyIndependentOf(e13_3,e13_1)
-)).
+% fof(ax_constitutionInUse, axiom, (
+%   object(e13_1) & object(e13_2) & object(e13_3) & ~(e13_1=e13_2) & ~(e13_1=e13_3) & ~(e13_2=e13_3) & existentiallyDependsOn(e13_2,e13_1) & existentiallyIndependentOf(e13_3,e13_1)
+% )).
 
 % TODO: introduce transitivity and anti-symmetry of existential dependence
 % TODO: introduce continuity of existence with perdurants never ceasing to exist
 
-%%%%%%%%%%%%%%%%%%%%%%%% Inherence %%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%% Moments and Inherence %%%%%%%%%%%%%%%%%%%%%%%
 
+%  Inherence
+
+fof(ax_inherenceImpliesExistentialDependence_a67, axiom, (
+  ![M,X]: (inheresIn(M,X) => existentiallyDependsOn(M,X))
+)).
+
+fof(ax_thingsInvolvedInInherence_a68, axiom, (
+  ![M,X]: (inheresIn(M,X) => (moment(M) & (type_(X) | endurant(X))))
+)).
+
+% TODO: add definition (d5) for the "bearer" axiom
+
+fof(ax_irreflexiveInherence, axiom, (
+  ![X]: (~inheresIn(X,X))
+)).
+
+fof(ax_asymmetricInherence, axiom, (
+  ![X,Y]: (inheresIn(X,Y) => ~inheresIn(Y,X))
+)).
+
+fof(ax_intransitiveInherence, axiom, (
+  ![X,Y,Z]: ((inheresIn(X,Y) & inheresIn(Y,Z)) => ~inheresIn(X,Z))
+)).
+
+fof(ax_uniqueInherence_a69, axiom, (
+  ![X,Y,Z]: ((inheresIn(X,Y) & inheresIn(X,Z)) => (Y=Z))
+)).
+
+% Moments
+
+fof(ax_dMomentOf_d6, axiom, (
+  ![M,X]: ()
+)).
