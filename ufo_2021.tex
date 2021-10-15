@@ -947,7 +947,13 @@ fof(ax_constitution_a61, axiom, (
   ))
 )).
 
-% TODO: add axiom (a62) once the predicate "exists(X,W)" is introduced.
+fof(ax_wheneverAConstitutedPerdurantExistsTheConstitutedByRelationHolds_a62, axiom, (
+  ![P1,P2,W1]: ((constitutedBy(P1,P2,W1) & perdurant(P1)) => (![W2]: (exists(P1,W2) => constitutedBy(P1,P2,W2))))
+)).
+
+fof(ax_constitutedByIsAsymmetric_a63, axiom, (
+  ![E1,E2,W]: (constitutedBy(E1,E2,W) => ~constitutedBy(E2,E1,W))
+)).
 
 % Constitution in use
 % (tested to rule out trivial models)
@@ -956,4 +962,29 @@ fof(ax_constitution_a61, axiom, (
 %   object(e12_1) & object(e12_2) & objectKind(k12_1) & objectKind(k12_2) & world(w12) & ~(k12_1=k12_2) & iof(e12_1,k12_1,w12) & iof(e12_2,k12_2,w12) & constitutedBy(e12_1,e12_2,w12) & genericConstitutionalDependence(k12_1,k12_2) & constitution(e12_1,k12_1,e12_2,k12_2,w12)
 % )).
 
+%%%%%%%%%%%%%%%%% Existential Dependence %%%%%%%%%%%%%%%%%
+
+fof(ax_exists_a64, axiom, (
+  ![X,W]: (exists(X,W) => (thing(X) & world(W)))
+)).
+
+fof(ax_existentiallyDependsOn_a65, axiom, (
+  ![X,Y]: (existentiallyDependsOn(X,Y) <=> (![W]: (exists(X,W) => exists(Y,W))))
+)).
+
+fof(ax_existentiallyIndependentOf_a66, axiom, (
+  ![X,Y]: (existentiallyIndependentOf(X,Y) <=> (~existentiallyDependsOn(X,Y) & ~existentiallyDependsOn(Y,X)))
+)).
+
+% Existential dependence in use
+% (tested to rule out trivial models)
+
+fof(ax_constitutionInUse, axiom, (
+  object(e13_1) & object(e13_2) & object(e13_3) & ~(e13_1=e13_2) & ~(e13_1=e13_3) & ~(e13_2=e13_3) & existentiallyDependsOn(e13_2,e13_1) & existentiallyIndependentOf(e13_3,e13_1)
+)).
+
+% TODO: introduce transitivity and anti-symmetry of existential dependence
+% TODO: introduce continuity of existence with perdurants never ceasing to exist
+
+%%%%%%%%%%%%%%%%%%%%%%%% Inherence %%%%%%%%%%%%%%%%%%%%%%%
 
