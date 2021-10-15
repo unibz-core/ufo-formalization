@@ -760,12 +760,15 @@ fof(ax_relatorKindDefinition_a45, axiom, (
 
 % Skipping (t22) because (a21) makes it trivial
 
-fof(ax_endurantsInstantiateEndurantKindsOfSomeNature_a46, axiom, (
-  ![E]: (endurant(E) => (
-    ?[K]: ((objectKind(K) | collectiveKind(K) | quantityKind(K) | modeKind(K) | qualityKind(K) | relatorKind(K))
-    & (![W]: (iof(E,K,W))))
-  ))
-)).
+% Ax |= "th_endurantsInstantiateEndurantKindsOfSomeNature_a46"; conjecture commented for convenience
+% This axiom is actually a theorem in this version of the axiomatization
+
+% fof(th_endurantsInstantiateEndurantKindsOfSomeNature_a46, conjecture, (
+%   ![E]: (endurant(E) => (
+%     ?[K,W]: ((objectKind(K) | collectiveKind(K) | quantityKind(K) | modeKind(K) | qualityKind(K) | relatorKind(K))
+%     & iof(E,K,W))
+%   ))
+% )).
 
 % Ax |= "th_endurantSortalsCompleteness_t23"; conjecture commented for convenience
 % Thanks to the taxonomy, we already have "sortal(T) => endurantType(T)", but I leave it like this to be consistent with the paper
@@ -924,9 +927,33 @@ fof(ax_constitutedByDifferentKinds_a59, axiom, (
   ![E1,E2,T1,T2,W]: ((constitutedBy(E1,E2,W) & iof(E1,T1,W) & iof(E2,T2,W) & kind(T1) & kind(T2)) => (~(T1=T2)))
 )).
 
+% Ax |= "th_noSelfConstitution_t27"; conjecture commented for convenience
+
+% fof(th_noSelfConstitution_t27, conjecture, (
+%   ~?[X,W]: (endurant(X) & constitutedBy(X,X,W))
+% )).
+
+fof(ax_genericConstitutionalDependence_a60, axiom, (
+  ![T1,T2]: (genericConstitutionalDependence(T1,T2) <=> (
+    type_(T1) & type_(T2) & ![E1,W]: (iof(E1,T1,W) => (
+      ?[E2]: (constitutedBy(E1,E2,W) & iof(E2,T2,W)
+    )))
+  ))
+)).
+
+fof(ax_constitution_a61, axiom, (
+  ![E1,T1,E2,T2,W]: (constitution(E1,T1,E2,T2,W) <=> (
+    iof(E1,T1,W) & iof(E2,T2,W) & genericConstitutionalDependence(T1,T2) & constitutedBy(E1,E2,W)
+  ))
+)).
+
+% TODO: add axiom (a62) once the predicate "exists(X,W)" is introduced.
+
 % Constitution in use
 % (tested to rule out trivial models)
 
 % fof(ax_constitutionInUse, axiom, (
-%   endurant(e12_1) & endurant(e12_2) & objectKind(k12_1) & objectKind(k12_2) & world(w12) & ~(k12_1=k12_2) & iof(e12_1,k12_1,w12) & iof(e12_2,k12_2,w12) & constitutedBy(e12_1,e12_2,w12)
+%   object(e12_1) & object(e12_2) & objectKind(k12_1) & objectKind(k12_2) & world(w12) & ~(k12_1=k12_2) & iof(e12_1,k12_1,w12) & iof(e12_2,k12_2,w12) & constitutedBy(e12_1,e12_2,w12) & genericConstitutionalDependence(k12_1,k12_2) & constitution(e12_1,k12_1,e12_2,k12_2,w12)
 % )).
+
+
