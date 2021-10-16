@@ -986,7 +986,7 @@ fof(ax_existentiallyIndependentOf_a66, axiom, (
 % TODO: introduce transitivity and anti-symmetry of existential dependence
 % TODO: introduce continuity of existence with perdurants never ceasing to exist
 
-%%%%%%%%%%%%%%%%%%%%%%%% Moments and Inherence %%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%% Moments and Inherence %%%%%%%%%%%%%%%%%
 
 %  Inherence
 
@@ -1019,5 +1019,53 @@ fof(ax_uniqueInherence_a69, axiom, (
 % Moments
 
 fof(ax_dMomentOf_d6, axiom, (
-  ![M,X]: ()
+  ![M,X]: (momentOf(M,X) <=> (inheresIn(M,X) | (
+    ?[M2]: (inheresIn(M,M2) & momentOf(M2,X))
+  )))
 )).
+
+fof(ax_dUltimateBearerOf_d7, axiom, (
+  ![B,M]: (ultimateBearerOf(B,M) <=> (~moment(B) & momentOf(M,B)))
+)).
+
+fof(ax_everyMomentHasUniqueAUltimateBearer_a70, axiom, (
+  ![M]: (moment(M) => (?[B]: (ultimateBearerOf(B,M) & (
+    ![B2]: (ultimateBearerOf(B2,M) <=> (B=B2))
+  ))))
+)).
+
+fof(ax_noMomentOfCycles, axiom, (
+  ~?[M]: momentOf(M,M)
+)).
+
+% Ax |= "th_irreflexiveInherence_t28"; conjecture commented for convenience
+
+% fof(th_irreflexiveInherence_t28, conjecture, (
+%   ~?[X]: (inheresIn(X,X))
+% )).
+
+% Ax |= "th_asymmetricInherence_t29"; conjecture commented for convenience
+
+% fof(th_asymmetricInherence_t29, conjecture, (
+%   ~?[X,Y]: (inheresIn(X,Y) & inheresIn(Y,X))
+% )).
+
+% Ax |= "th_antiTransitiveInherence_t30"; conjecture commented for convenience
+
+% fof(th_antiTransitiveInherence_t30, conjecture, (
+%   ![X,Y,Z]: ((inheresIn(X,Y) & inheresIn(Y,Z)) => (~inheresIn(X,Z)))
+% )).
+
+%%%%%%%%%%%%%%%%%%%%%%%% Relators %%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%% Characterization %%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%% Qualities and Quality Structures %%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%% Endurants and Perdurants %%%%%%%%%%%%%%%%
