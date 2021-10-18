@@ -62,6 +62,10 @@ fof(ax_abstractIndividual_taxonomy_world, axiom, (
   ![X]: (world(X) => (abstractIndividual(X)))
 )).
 
+fof(ax_abstractIndividual_pairwiseDisjoint, axiom, (
+  ~?[X]: ((quale(X) & set_(X)) | (quale(X) & world(X)) | (set_(X) & world(X)))
+)).
+
 % Set
 
 fof(ax_set_taxonomy_qualityStructure, axiom, (
@@ -1138,10 +1142,60 @@ fof(ax_dMediates_a82, axiom, (
 
 %%%%%%%%%%%%%%%%%%%% Characterization %%%%%%%%%%%%%%%%%%%%
 
+fof(ax_endurantTypeCharacterizationByMomentTypes_a83, axiom, (
+  ![ET,MT]: (characterizes(MT,ET) => (
+    endurantType(ET)
+    & momentType(M)
+    & (![E,W]: (iof(E,ET,W) => (?[M]: (iof(M,MT,W) & inheresIn(M,E)))))
+    & (![M2,W2]: (iof(M2,MT,W2) => (?[E2]: (iof(E2,ET,W2) & inheresIn(M2,E2)))))
+  ))
+)).
 
+% Ax |= "th_qualitiesInheresInAUniqueEndurantConnectThroughCharacteization_a84"; conjecture commented for convenience
+
+% fof(th_qualitiesInheresInAUniqueEndurantConnectThroughCharacteization_a84, conjecture, (
+%   ![QT,ET]: ((characterizes(QT,ET) & qualityType(QT)) => (![Q,W]: (iof(Q,QT,W) => (?[E]: (iof(E,ET,W) & inheresIn(Q,E) & (![E2]: (inheresIn(Q,E2) <=> (E=E2))))))))
+% )).
+
+% TODO: add instances
 
 %%%%%%%%%%%% Qualities and Quality Structures %%%%%%%%%%%%
 
+% Skipping (a85); previously introduced in the taxonomy
+% Skipping (a86); previously introduced in the taxonomy
+% Skipping (a87); previously introduced in the taxonomy
 
+% ZFC Set Theory
+
+% TODO: we seem to require
+
+% Quality Structures
+
+fof(ax_dQualityStructure_d10, axiom, (
+  ![QS]: (qualityStructure(QS) <=> (?[QT]: (qualityType(QT) & associatedWith(QS,QT))))
+)).
+
+fof(ax_dQualityStructure_d10, axiom, (
+  ![QS]: (qualityStructure(QS) <=> (?[QT]: (qualityType(QT) & associatedWith(QS,QT))))
+)).
 
 %%%%%%%%%%%%%%%% Endurants and Perdurants %%%%%%%%%%%%%%%%
+
+fof(ax_manifestedInInvolvedThings_a104, axiom, (
+  ![E,P]: (manifestedIn(E,P) => (endurant(E) & perdurant(P)))
+)).
+
+fof(ax_lifeOfInvolvedThings_a105, axiom, (
+  ![E,P]: (lifeOf(E,P) => (
+    endurant(E)
+    & (![P2]: (overlap(P2,P) <=> (perdurant(P2) & manifestedIn(P2,X))))
+  ))
+)).
+
+% TODO: review ax_lifeOfInvolvedThings_a105 and its translation of the small sigma predicate schema in (a105)
+
+fof(ax_meetsInvolvedThings_a106, axiom, (
+  ![P1,P2]: (meets(P1,P2) => (perdurant(P1) & perdurant(P2)))
+)).
+
+% TODO: add instances
