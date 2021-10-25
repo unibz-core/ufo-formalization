@@ -288,8 +288,6 @@ fof(ax_dIndividual_a2, axiom, (
   ![X]: (individual(X) <=> (~?[Y,W]: iof(Y,X,W)))
 )).
 
-% TODO: confirm whether we are including second-order types in this formalization
-
 fof(ax_multiLevel_a3, axiom, (
   ![X,Y,W]: (iof(X,Y,W) => (type_(X) | individual(X)))
 )).
@@ -346,9 +344,9 @@ fof(ax_properSpecializes_d1, axiom, (
 % )).
 
 fof(ax_sharedSpecializations_a6, axiom, (
-  ![T1,T2]: (?[X,W]: ((iof(X,T1,W) & iof(X,T2,W) & ~specializes(T1,T2) & ~specializes(T2,T1)) => (
-      (?[T3]: (specializes(T1,T3) & specializes(T2,T3) & iof(X,T3,W)))|
-      (?[T3]: (specializes(T3,T1) & specializes(T3,T2) & iof(X,T3,W)))
+  ![T1,T2]: (![X,W]: ((iof(X,T1,W) & iof(X,T2,W) & ~specializes(T1,T2) & ~specializes(T2,T1)) => (
+      (?[T3]: (specializes(T1,T3) & specializes(T2,T3) & iof(X,T3,W)))
+      | (?[T3]: (specializes(T3,T1) & specializes(T3,T2) & iof(X,T3,W)))
   )))
 )).
 
@@ -362,9 +360,6 @@ fof(ax_sharedSpecializations_a6, axiom, (
 %%%%%%%%%%%%%%%%% Sortality and Rigidity %%%%%%%%%%%%%%%%%
 
 % Rigidity
-
-% TODO: I don't find we need to attach the "rigid(T)" predicate to the "endurant(T)" predicate like the paper does, so let's review this idea.
-% TODO: verify whether it is a problem not to introduce predicates "world(W1) &" and "world(W2) &" before each instantiation
 
 fof(ax_dRigid_a18, axiom, (
   ![T]: (rigid(T) <=> (endurantType(T) & (
@@ -889,20 +884,18 @@ fof(ax_binarySum_a53, axiom, (
 
 %%%%%%%%%%%%%%%%%%%%%%% Composition %%%%%%%%%%%%%%%%%%%%%%
 
-% TODO: review why we need to constrain functions to hold between endurants and types only (not even "endurant types")
-
 fof(ax_function, axiom,  (
-  ![X,Y]: (function(X,Y) => (endurant(X) & type_(Y)))
+  ![X,Y]: (functionsAs(X,Y) => (endurant(X) & type_(Y)))
 )).
 
 fof(ax_genericFunctionalDependence_a55, axiom, (
   ![T1,T2,W]: (gfd(T1,T2,W) <=> 
-    ![E1]: ((iof(T1,E1,W) & function(T1,E1)) => ?[E2]: (~(E1=E2) & iof(T2,E2,W) & function(T2,E2))))
+    ![E1]: ((iof(T1,E1,W) & functionsAs(T1,E1)) => ?[E2]: (~(E1=E2) & iof(T2,E2,W) & functionsAs(T2,E2))))
 )).
 
 fof(ax_individualFunctionalDependence_a56, axiom, (
   ![E1,T1,E2,T2,W]: (ifd(E1,T1,E2,T2,W) <=> (
-    gfd(T1,T2,W) & iof(E1,T1,W) & iof(E2,T2,W) & (function(E1,T1) => function(E2,T2))
+    gfd(T1,T2,W) & iof(E1,T1,W) & iof(E2,T2,W) & (functionsAs(E1,T1) => functionsAs(E2,T2))
   ))
 )).
 
@@ -1181,14 +1174,14 @@ fof(ax_dQualityStructure_d10, axiom, (
 
 %%%%%%%%%%%%%%%% Endurants and Perdurants %%%%%%%%%%%%%%%%
 
-fof(ax_manifestedInInvolvedThings_a104, axiom, (
-  ![E,P]: (manifestedIn(E,P) => (endurant(E) & perdurant(P)))
+fof(ax_manifestsInvolvedThings_a104, axiom, (
+  ![E,P]: (manifests(E,P) => (endurant(E) & perdurant(P)))
 )).
 
 fof(ax_lifeOfInvolvedThings_a105, axiom, (
-  ![E,P]: (lifeOf(E,P) => (
+  ![E,P]: (lifeOf(P,E) => (
     endurant(E)
-    & (![P2]: (overlap(P2,P) <=> (perdurant(P2) & manifestedIn(P2,X))))
+    & (![P2]: (overlap(P2,P) <=> (perdurant(P2) & manifests(E,P2))))
   ))
 )).
 
