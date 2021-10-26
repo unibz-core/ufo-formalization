@@ -18,3 +18,4 @@
 # Visual Studio Code files
 .vscode/
 
+build/*
