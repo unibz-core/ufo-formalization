@@ -18,4 +18,8 @@
 # Visual Studio Code files
 .vscode/
 
+# Eclipse
+.project
+src-gen/
+
 build/*
