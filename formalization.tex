@@ -54,6 +54,9 @@
 \newcommand{\refax}[1]{(\AxLabel\ref{#1})}
 \newcommand{\refth}[1]{(\ThLabel\ref{#1})}
 
+% newcommand to apply a specific style to model elements
+\newcommand{\me}[1]{\textsf{#1}}
+
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
@@ -92,19 +95,19 @@
 \maketitle
 
 \begin{abstract}
-This document presents a formalization of the Unified Foundational Ontology (UFO) in first-order logic. This formalization is documented by means of three complementary representations: (i) a representation in standard Common Logic using the CLIF syntax; (ii) a representation in natural language; and, when applicable, a (iii) UML-based diagrammatic representation. The presented formalization is supported by consistency and satisfiability checks performed through automated proofing tools.
+This document presents a formalization of the Unified Foundational Ontology (UFO) in first-order logic. This formalization is documented by means of three complementary representations: (i) a representation in standard Common Logic using the CLIF syntax; (ii) a representation in natural language; and, when applicable, (iii) a UML-based diagrammatic representation. The presented formalization is supported by consistency and satisfiability checks performed through automated proofing tools.
 \end{abstract}
 
 \section{Introduction}
 
-This document presents a formalization of the Unified Foundational Ontology (UFO) in first-order logic. This formalization is documented by means of three complementary representations: (i) a representation in standard Common Logic using the CLIF syntax; (ii) a representation in natural language; and, when applicable, a (iii) UML-based diagrammatic representation. The presented formalization is supported by consistency and satisfiability checks performed through automated proofing tools.
+This document presents a formalization of the Unified Foundational Ontology (UFO) in first-order logic. This formalization is documented by means of three complementary representations: (i) a representation in standard Common Logic using the CLIF syntax; (ii) a representation in natural language; and, when applicable, (iii) a UML-based diagrammatic representation. The presented formalization is supported by consistency and satisfiability checks performed through automated proofing tools.
 
 The remainder of this document is organized as a single formalization section (Section~\ref{sec:formalization}), which contains subsections for each submodule of the ontology.
 
 \section{Formalization}
 \label{sec:formalization}
 
-This section contains the formalization of the Unified Foundational Ontology (UFO) in first-order logics. This formalization is organized in several subsections where each presents the formalization of a portion of the whole ontology. The formalization is presented through different equivalent representations, designed to support the understanding of its contents: (i) a representation in standard Common Logic using the CLIF syntax; (ii) a representation in natural language; and, when applicable, a (iii) UML-based diagrammatic representation.
+This section contains the formalization of the Unified Foundational Ontology (UFO) in first-order logics. This formalization is organized in several subsections where each presents the formalization of a portion of the whole ontology. The formalization is presented through different equivalent representations, designed to support the understanding of its contents: (i) a representation in standard Common Logic using the CLIF syntax; (ii) a representation in natural language; and, when applicable, (iii) a UML-based diagrammatic representation.
 
 The UML-based diagrammatic representation serves as a visual representation certain predicates and axioms, being each element in Figure~\ref{fig:diagram_conventions} being translated as follows:
 
@@ -166,17 +169,86 @@ The UML-based diagrammatic representation serves as a visual representation cert
     $\neg\exists x (classB(x) \wedge classC(x))$  \hfill \{disjoint\}
 \end{itemize}
 
+% 01_taxonomy_thing.p
+\subsection{Partial Taxonomy of UFO: \me{Thing}}
+
+This subsection presents most general types of UFO's taxonomy specializing the type \me{Thing} (Figure~\ref{fig:01_taxonomy_thing}).
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{diagrams/Thing_Diagram.png}
+    \caption{Visual representation of UFO's taxonomy of \me{Thing}.}
+    \label{fig:01_taxonomy_thing}
+\end{figure}
+
+\begin{itemize}
+    \item[\myax{ax_thing_taxonomy}] For every $x$, $x$ is a \me{Thing} ifif $x$ is either a \me{Type} or an \me{Individual}.
+    
+    $\forall x(\textsf{type\_}(x)\vee \textsf{individual}(x)\leftrightarrow \textsf{thing}(x))$
+    
+    \lstinputlisting[firstline=1, lastline=6, firstnumber=1]{src/axioms-clif/01_taxonomy_thing.p.clif}
+    
+    
+    \item[\myax{ax_thing_partition}] There is no $x$ such that is a \me{Type} and an \me{Individual}.
+    
+    $\neg \exists x(\textsf{type\_}(x)\wedge \textsf{individual}(x))$
+    
+    \lstinputlisting[firstline=7, lastline=11, firstnumber=7]{src/axioms-clif/01_taxonomy_thing.p.clif}
+
+
+    \item[\myax{ax_individual_taxonomy}] For every $x$, $x$ is an \me{Individual} ifif $x$ is either a \me{Concrete Individual} or an \me{Abstract Individual}.
+    
+    $\forall x(\textsf{concreteIndividual}(x)\vee \textsf{abstractIndividual}(x)\leftrightarrow \textsf{individual}(x))$
+
+    \lstinputlisting[firstline=12, lastline=17, firstnumber=12]{src/axioms-clif/01_taxonomy_thing.p.clif}
+
+
+    \item[\myax{ax_individual_partition}] There is no $x$ such that is a \me{Concrete Individual} and an \me{Abstract Individual}.
+    
+    $\neg \exists x(\textsf{concreteIndividual}(x)\wedge \textsf{abstractIndividual}(x))$
+
+    \lstinputlisting[firstline=18, lastline=22, firstnumber=18]{src/axioms-clif/01_taxonomy_thing.p.clif}
+
+    
+    \item[\myax{ax_concreteIndividual_taxonomy}] For every $x$, $x$ is a \me{Concrete Individual} ifif $x$ is either a \me{Perdurant} or an \me{Endurant}.
+    
+    $\forall x(\textsf{endurant}(x)\vee \textsf{perdurant}(x)\leftrightarrow \textsf{concreteIndividual}(x))$
+
+    \lstinputlisting[firstline=23, lastline=28, firstnumber=23]{src/axioms-clif/01_taxonomy_thing.p.clif}
+
+
+    \item[\myax{ax_concreteIndividual_partition}] There is no $x$ such that is a \me{Perdurant} and an \me{Endurant}.
+    
+    $\neg \exists x(\textsf{endurant}(x)\wedge \textsf{perdurant}(x))$
+
+    \lstinputlisting[firstline=29, lastline=33, firstnumber=29]{src/axioms-clif/01_taxonomy_thing.p.clif}
+
+    
+    \item[\myax{ax_type_taxonomy}] For every $x$, $x$ is a \me{Concrete Individual} ifif $x$ is either a \me{Perdurant} or an \me{Endurant}.
+    
+    $\forall x(\textsf{endurantType}(x)\vee \textsf{perdurantType}(x)\rightarrow \textsf{type\_}(x))$
+
+    \lstinputlisting[firstline=34, lastline=39, firstnumber=34]{src/axioms-clif/01_taxonomy_thing.p.clif}
+
+
+    \item[\myax{ax_type_partition}] There is no $x$ such that is a \me{Perdurant} and an \me{Endurant}.
+    
+    $\neg \exists x(\textsf{endurantType}(x)\wedge \textsf{perdurantType}(x))$
+
+    \lstinputlisting[firstline=40, lastline=44, firstnumber=40]{src/axioms-clif/01_taxonomy_thing.p.clif}
+\end{itemize}
+
 \subsection{UFO Taxonomy}
 
 % Thing Taxonomy
 \subsubsection{Partial Taxonomy of Thing}
 
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.8\textwidth]{diagrams/Thing_Diagram.png}
-    \caption{Partial Taxonomy of UFO -- Thing.}
-    \label{fig:ufo_taxonomy_thing}
-\end{figure}
+% \begin{figure}[ht]
+%     \centering
+%     \includegraphics[width=0.8\textwidth]{diagrams/Thing_Diagram.png}
+%     \caption{Partial Taxonomy of UFO -- Thing.}
+%     \label{fig:ufo_taxonomy_thing}
+% \end{figure}
 
 \lstinputlisting[
     firstline=\BeginThingTaxonomy,
