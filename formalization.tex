@@ -3,6 +3,7 @@
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage{graphicx}
+\usepackage{subcaption}
 
 \newcommand{\BeginThingTaxonomy}{4}
 \newcommand{\EndThingTaxonomy}{49}
@@ -39,6 +40,20 @@
 \newcommand{\BeginEndurantsAndPerdurants}{1182}
 \newcommand{\EndEndurantsAndPerdurants}{1201}
 
+% newcommand for labels of axioms, theorems and definitions
+\newcommand{\AxLabel}{a}
+\newcommand{\ThLabel}{t}
+
+% counter and newcommand for numbering formulas
+\newcounter{cntax}
+\newcommand{\myax}[1]{\refstepcounter{cntax}{\bf \small \AxLabel\thecntax}\label{#1}$\,\,\,\,$}
+\newcounter{cntth}
+\newcommand{\myth}[1]{\refstepcounter{cntth}{\bf \small \ThLabel\thecntth}\label{#1}$\,\,\,\,$}
+
+% newcommands to refer to formulas with labels
+\newcommand{\refax}[1]{(\AxLabel\ref{#1})}
+\newcommand{\refth}[1]{(\ThLabel\ref{#1})}
+
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
@@ -63,12 +78,12 @@
 
 \lstset{style=mystyle}
 
-\title{A TPTP Formalization of the Unified Foundational Ontology}
+\title{A First-Order Logic Formalization of the Unified Foundational Ontology}
 \author{
     Daniele Porelo,
-    Jo\~ao Paulo A. Almeida,
-    Giancarlo Guizzardi,\\
     Claudenir M. Fonseca,
+    Jo\~ao Paulo A. Almeida,\\
+    Giancarlo Guizzardi,
     Tiago Prince Sales
 }
 \date{\today}
@@ -77,14 +92,79 @@
 \maketitle
 
 \begin{abstract}
-This document presents a formalization of the Unified Foundation Ontology (UFO) expressed in first-order logics through the TPTP syntax. This formalization is intended to support verification of UFO's theory through automated provers and consistency checkers.
+This document presents a formalization of the Unified Foundational Ontology (UFO) in first-order logic. This formalization is documented by means of three complementary representations: (i) a representation in standard Common Logic using the CLIF syntax; (ii) a representation in natural language; and, when applicable, a (iii) UML-based diagrammatic representation. The presented formalization is supported by consistency and satisfiability checks performed through automated proofing tools.
 \end{abstract}
 
 \section{Introduction}
 
-This document presents a formalization of the Unified Foundation Ontology (UFO) expressed in first-order logics through the TPTP syntax. This formalization is intended to support verification of UFO's theory through automated provers and consistency checkers.
+This document presents a formalization of the Unified Foundational Ontology (UFO) in first-order logic. This formalization is documented by means of three complementary representations: (i) a representation in standard Common Logic using the CLIF syntax; (ii) a representation in natural language; and, when applicable, a (iii) UML-based diagrammatic representation. The presented formalization is supported by consistency and satisfiability checks performed through automated proofing tools.
 
-\section{UFO's TPTP Specification}
+The remainder of this document is organized as a single formalization section (Section~\ref{sec:formalization}), which contains subsections for each submodule of the ontology.
+
+\section{Formalization}
+\label{sec:formalization}
+
+This section contains the formalization of the Unified Foundational Ontology (UFO) in first-order logics. This formalization is organized in several subsections where each presents the formalization of a portion of the whole ontology. The formalization is presented through different equivalent representations, designed to support the understanding of its contents: (i) a representation in standard Common Logic using the CLIF syntax; (ii) a representation in natural language; and, when applicable, a (iii) UML-based diagrammatic representation.
+
+The UML-based diagrammatic representation serves as a visual representation certain predicates and axioms, being each element in Figure~\ref{fig:diagram_conventions} being translated as follows:
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=0.5\textwidth]{diagrams/Conventions_Class.png}
+        \caption{Rectangle shape.}
+        \label{fig:diagram_conventions_rectangle}
+    \end{subfigure}
+    \qquad
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{diagrams/Conventions_Relation.png}
+        \caption{Labeled open arrow.}
+        \label{fig:diagram_conventions_open_arrow}
+    \end{subfigure}
+    
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=0.5\textwidth]{diagrams/Conventions_Specialization.png}
+        \caption{Closed arrow.}
+        \label{fig:diagram_conventions_closed_arrow}
+    \end{subfigure}
+    \qquad
+    \centering
+    \begin{subfigure}[b]{0.35\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{diagrams/Conventions_Generalization_Set.png}
+        \caption{Labeled closed arrows.}
+        \label{fig:diagram_conventions_labeled_arrow}
+    \end{subfigure}
+    \caption{UML-based representation of first-order logic axioms.}\label{fig:diagram_conventions}
+\end{figure}
+
+\begin{itemize}
+    \item Rectangle shape (Figure~\ref{fig:diagram_conventions_rectangle}): visual representation of unary predicates associated to types in the ontology; the associated predicate is shown in lower camel case with no spaces.
+    
+    $classA(x)$
+
+    \item Open arrow (Figure~\ref{fig:diagram_conventions_open_arrow}): visual representation of binary predicates; the predicate associated to the arrows' label is shown in lower camel case with no spaces; the predicate can only be true for any $x$ and $y$ if it is also true predicates associated to the types of each end (keeping the order of the arrow in the binary predicate's positions); this representation may also be associated to ternary predicates ifif its third position represents a time-index.
+    
+    $\forall x,y (relation(x,y) \rightarrow (classA(x) \wedge classB(y)))$
+    
+    $\forall x,y,w (relation(x,y,w) \rightarrow (classA(x) \wedge classB(y) \wedge world(w)))$
+
+    \item Closed arrow (Figure~\ref{fig:diagram_conventions_closed_arrow}): visual representation of specializations between ontology's types, where the type in the tail of the arrow is a subtype of the type in the head of the arrow.
+    
+    $\forall x (classB(x) \rightarrow classA(x))$
+
+    \item Labeled closed arrow (Figure~\ref{fig:diagram_conventions_labeled_arrow}): visual representation of disjoint and/or complete constraints over sets specializations between ontology's types.
+    
+    $\forall x (classB(x) \rightarrow classA(x))$\\
+    $\forall x (classC(x) \rightarrow classA(x))$\\
+    $\forall x (classA(x) \rightarrow (classB(x) \vee classC(x)))$  \hfill \{complete\}\\
+    $\neg\exists x (classB(x) \wedge classC(x))$  \hfill \{disjoint\}
+\end{itemize}
 
 \subsection{UFO Taxonomy}
 
