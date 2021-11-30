@@ -22,4 +22,8 @@
 .project
 src-gen/
 
+# Visual Paradigm Files
+**/*.vpp.lck
+**/*.vpp.bak_*
+
 build/*
