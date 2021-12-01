@@ -298,29 +298,96 @@ This subsection presents a portion of UFO's taxonomy specializing the type \me{A
 \end{itemize}
 
 
+
+% 03_taxonomy_endurant.p
+\subsection{Partial Taxonomy of UFO: \me{Endurant}}
+
+This subsection presents a portion of UFO's taxonomy specializing the type \me{Endurant} (Figure~\ref{fig:03_taxonomy_endurant}).
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{diagrams/Endurant_Diagram.png}
+    \caption{Visual representation of UFO's taxonomy of \me{Endurant}.}
+    \label{fig:03_taxonomy_endurant}
+\end{figure}
+
+\begin{itemize}
+    \item[\myax{ax_endurant_taxonomy}] For every $x$, $x$ is an \me{Endurant} ifif $x$ is either a \me{Substantial} or a \me{Moment}.
+    
+    $\forall x(\textsf{substantial}(x)\vee \textsf{moment}(x)\leftrightarrow \textsf{endurant}(x))$
+    
+    \lstinputlisting[firstline=1, lastline=6, firstnumber=1]{src/axioms-clif/03_taxonomy_endurant.p.clif}
+    
+    
+    \item[\myax{ax_endurant_partition}] There is no $x$ such that it is a \me{Substantial} and a \me{Moment}.
+    
+    $\neg \exists x(\textsf{substantial}(x)\wedge \textsf{moment}(x))$
+    
+    \lstinputlisting[firstline=7, lastline=11, firstnumber=7]{src/axioms-clif/03_taxonomy_endurant.p.clif}
+    
+    \item[\myax{ax_substantial_taxonomy}] For every $x$, $x$ is a \me{Substantial} ifif $x$ is either an \me{Object}, a \me{Collective}, or a \me{Quantity}.
+    
+    $\forall x(\textsf{object}(x)\vee \textsf{collective}(x)\vee \textsf{quantity}(x)\leftrightarrow \textsf{substantial}(x))$
+    
+    \lstinputlisting[firstline=12, lastline=17, firstnumber=12]{src/axioms-clif/03_taxonomy_endurant.p.clif}
+    
+    
+    \item[\myax{ax_substantial_partition}] There is no $x$ such that it is an \me{Object}, a \me{Collective}, and a \me{Quantity} (pairwise disjoint).
+    
+    $\neg \exists x((\textsf{object}(x)\wedge \textsf{collective}(x))\vee (\textsf{object}(x)\wedge \textsf{quantity}(x))\vee (\textsf{collective}(x)\wedge \textsf{quantity}(x)))$
+    
+    \lstinputlisting[firstline=18, lastline=22, firstnumber=18]{src/axioms-clif/03_taxonomy_endurant.p.clif}
+
+    \item[\myax{ax_moment_taxonomy}] For every $x$, $x$ is a \me{Moment} ifif $x$ is either an \me{Intrinsic Moment} or a \me{Relator}.
+    
+    $\forall x(\textsf{intrinsicMoment}(x)\vee \textsf{relator}(x)\leftrightarrow \textsf{moment}(x))$
+    
+    \lstinputlisting[firstline=23, lastline=28, firstnumber=23]{src/axioms-clif/03_taxonomy_endurant.p.clif}
+    
+    
+    \item[\myax{ax_moment_partition}] There is no $x$ such that it is an \me{Intrinsic Moment} and a \me{Relator}.
+    
+    $\neg \exists x(\textsf{intrinsicMoment}(x)\wedge \textsf{relator}(x))$
+    
+    \lstinputlisting[firstline=29, lastline=33, firstnumber=29]{src/axioms-clif/03_taxonomy_endurant.p.clif}
+
+    \item[\myax{ax_intrinsicMoment_taxonomy}] For every $x$, $x$ is an \me{Intrinsic Moment} ifif $x$ is either a \me{Quality} or a \me{Mode}.
+    
+    $\forall x(\textsf{quality}(x)\vee \textsf{mode}(x)\leftrightarrow \textsf{intrinsicMoment}(x))$
+    
+    \lstinputlisting[firstline=34, lastline=39, firstnumber=34]{src/axioms-clif/03_taxonomy_endurant.p.clif}
+    
+    
+    \item[\myax{ax_intrinsicMoment_partition}] There is no $x$ such that it is an \me{Intrinsic Moment} and a \me{Relator}.
+    
+    $\neg \exists x(\textsf{quality}(x)\wedge \textsf{mode}(x))$
+    
+    \lstinputlisting[firstline=40, lastline=44, firstnumber=40]{src/axioms-clif/03_taxonomy_endurant.p.clif}
+
+    \item[\myax{ax_mode_taxonomy_disposition}] Every $x$ that is a \me{Disposition} is also a \me{Mode}.
+    
+    $\forall x(\textsf{disposition}(x)\rightarrow \textsf{mode}(x))$
+    
+    \lstinputlisting[firstline=45, lastline=50, firstnumber=45]{src/axioms-clif/03_taxonomy_endurant.p.clif}
+
+    \item[\myax{ax_mode_taxonomy_externallyDependentMode}] Every $x$ that is an \me{Externally Dependent Mode} is also a \me{Mode}.
+    
+    $\forall x(\textsf{externallyDependentMode}(x)\rightarrow \textsf{mode}(x))$
+    
+    \lstinputlisting[firstline=51, lastline=56, firstnumber=51]{src/axioms-clif/03_taxonomy_endurant.p.clif}
+
+    \item[\myax{ax_externallyDependentMode_taxonomy_quaIndividual}] Every $x$ that is an \me{Qua Individual} is also an \me{Externally Dependent Mode}.
+    
+    $\forall x(\textsf{quaIndividual}(x)\rightarrow \textsf{externallyDependentMode}(x))$
+    
+    \lstinputlisting[firstline=57, lastline=62, firstnumber=57]{src/axioms-clif/03_taxonomy_endurant.p.clif}
+\end{itemize}
+
+
 % ------------------------------ BEGIN DEPRECATED ------------------------------
 
 
 \subsection{UFO Taxonomy}
-
-% Abstract Individual Taxonomy
-\subsubsection{Partial Taxonomy of Abstract Individual}
-
-% TODO: update taxonomy with a disjointness declaration between Quale, Set, and World
-% Add World to the taxonomy
-
-% \begin{figure}[ht]
-%     \centering
-%     \includegraphics[width=0.4\textwidth]{diagrams/Abstract_Individual_Diagram.png}
-%     \caption{Partial Taxonomy of UFO -- Abstract Individual.}
-%     \label{fig:ufo_taxonomy_abstract_individual}
-% \end{figure}
-
-\lstinputlisting[
-    firstline=\BeginAbstractIndividualTaxonomy,
-    lastline=\EndAbstractIndividualTaxonomy,
-    firstnumber=\BeginAbstractIndividualTaxonomy 
-]{ufo_2021.tex}
 
 % Endurant Taxonomy
 \subsubsection{Partial Taxonomy of Endurant}

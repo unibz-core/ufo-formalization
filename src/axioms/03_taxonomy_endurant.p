@@ -40,6 +40,10 @@ fof(ax_intrinsicMoment_partition, axiom, (
 
 % Mode
 
+fof(ax_mode_taxonomy_disposition, axiom, (
+  ![X]: (disposition(X) => (mode(X)))
+)).
+
 fof(ax_mode_taxonomy_externallyDependentMode, axiom, (
   ![X]: (externallyDependentMode(X) => (mode(X)))
 )).

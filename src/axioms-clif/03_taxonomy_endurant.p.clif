@@ -42,6 +42,12 @@
 	(and (quality x) (mode x)))
 )
 )
+(cl-text  ax_mode_taxonomy_disposition
+(forall (x)
+	(if (disposition x)
+		(mode x))
+	)
+)
 (cl-text  ax_mode_taxonomy_externallyDependentMode
 (forall (x)
 	(if (externallyDependentMode x)
