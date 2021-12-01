@@ -189,7 +189,7 @@ This subsection presents most general types of UFO's taxonomy specializing the t
     \lstinputlisting[firstline=1, lastline=6, firstnumber=1]{src/axioms-clif/01_taxonomy_thing.p.clif}
     
     
-    \item[\myax{ax_thing_partition}] There is no $x$ such that is a \me{Type} and an \me{Individual}.
+    \item[\myax{ax_thing_partition}] There is no $x$ such that it is a \me{Type} and an \me{Individual}.
     
     $\neg \exists x(\textsf{type\_}(x)\wedge \textsf{individual}(x))$
     
@@ -203,7 +203,7 @@ This subsection presents most general types of UFO's taxonomy specializing the t
     \lstinputlisting[firstline=12, lastline=17, firstnumber=12]{src/axioms-clif/01_taxonomy_thing.p.clif}
 
 
-    \item[\myax{ax_individual_partition}] There is no $x$ such that is a \me{Concrete Individual} and an \me{Abstract Individual}.
+    \item[\myax{ax_individual_partition}] There is no $x$ such that it is a \me{Concrete Individual} and an \me{Abstract Individual}.
     
     $\neg \exists x(\textsf{concreteIndividual}(x)\wedge \textsf{abstractIndividual}(x))$
 
@@ -217,7 +217,7 @@ This subsection presents most general types of UFO's taxonomy specializing the t
     \lstinputlisting[firstline=23, lastline=28, firstnumber=23]{src/axioms-clif/01_taxonomy_thing.p.clif}
 
 
-    \item[\myax{ax_concreteIndividual_partition}] There is no $x$ such that is a \me{Perdurant} and an \me{Endurant}.
+    \item[\myax{ax_concreteIndividual_partition}] There is no $x$ such that it is a \me{Perdurant} and an \me{Endurant}.
     
     $\neg \exists x(\textsf{endurant}(x)\wedge \textsf{perdurant}(x))$
 
@@ -231,30 +231,77 @@ This subsection presents most general types of UFO's taxonomy specializing the t
     \lstinputlisting[firstline=34, lastline=39, firstnumber=34]{src/axioms-clif/01_taxonomy_thing.p.clif}
 
 
-    \item[\myax{ax_type_partition}] There is no $x$ such that is a \me{Perdurant} and an \me{Endurant}.
+    \item[\myax{ax_type_partition}] There is no $x$ such that it is a \me{Perdurant Type} and an \me{Endurant Type}.
     
     $\neg \exists x(\textsf{endurantType}(x)\wedge \textsf{perdurantType}(x))$
 
     \lstinputlisting[firstline=40, lastline=44, firstnumber=40]{src/axioms-clif/01_taxonomy_thing.p.clif}
 \end{itemize}
 
+
+
+% 02_taxonomy_abstract_individual.p
+\subsection{Partial Taxonomy of UFO: \me{Abstract Individual}}
+
+This subsection presents a portion of UFO's taxonomy specializing the type \me{Abstract Individual} (Figure~\ref{fig:02_taxonomy_abstract_individual}).
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.4\textwidth]{diagrams/Abstract_Individual_Diagram.png}
+    \caption{Visual representation of UFO's taxonomy of \me{Abstract Individual}.}
+    \label{fig:02_taxonomy_abstract_individual}
+\end{figure}
+
+\begin{itemize}
+    \item[\myax{ax_abstractIndividual_taxonomy_quale}] Every $x$ that is a \me{Quale} is also an \me{Abstract Individual}.
+    
+    $\forall x(\textsf{quale}(x)\rightarrow \textsf{abstractIndividual}(x))$
+    
+    \lstinputlisting[firstline=1, lastline=6, firstnumber=1]{src/axioms-clif/02_taxonomy_abstract_individual.p.clif}
+
+    \item[\myax{ax_abstractIndividual_taxonomy_set}] Every $x$ that is a \me{Set} is also an \me{Abstract Individual}.
+    
+    $\forall x(\textsf{set\_}(x)\rightarrow \textsf{abstractIndividual}(x))$
+    
+    \lstinputlisting[firstline=7, lastline=12, firstnumber=7]{src/axioms-clif/02_taxonomy_abstract_individual.p.clif}
+
+    \item[\myax{ax_abstractIndividual_taxonomy_world}] Every $x$ that is a \me{World} is also an \me{Abstract Individual}.
+    
+    $\forall x(\textsf{world}(x)\rightarrow \textsf{abstractIndividual}(x))$
+    
+    \lstinputlisting[firstline=13, lastline=18, firstnumber=13]{src/axioms-clif/02_taxonomy_abstract_individual.p.clif}
+
+    \item[\myax{ax_abstractIndividual_pairwiseDisjoint}] There is no $x$ such that it is a \me{Quale}, a \me{Set}, and a \me{World} (pairwise disjoint).
+    
+    $\neg \exists x((\textsf{quale}(x)\wedge \textsf{set\_}(x))\vee (\textsf{quale}(x)\wedge \textsf{world}(x))\vee (\textsf{set\_}(x)\wedge \textsf{world}(x)))$
+    
+    \lstinputlisting[firstline=19, lastline=23, firstnumber=19]{src/axioms-clif/02_taxonomy_abstract_individual.p.clif}
+
+    \item[\myax{ax_set_taxonomy_qualityStructure}] Every $x$ that is a \me{Quality Structure} is also a \me{Set}.
+    
+    $\forall x(\textsf{qualityStructure}(x)\rightarrow \textsf{set\_}(x))$
+    
+    \lstinputlisting[firstline=24, lastline=29, firstnumber=24]{src/axioms-clif/02_taxonomy_abstract_individual.p.clif}
+
+    \item[\myax{ax_qualityStructure_taxonomy}] For every $x$, $x$ is a \me{Quality Structure} ifif $x$ is either a \me{Quality Dimension} or a \me{Quality Space}.
+    
+    $\forall x(\textsf{qualityDimension}(x)\vee \textsf{qualitySpace}(x)\leftrightarrow \textsf{qualityStructure}(x))$
+    
+    \lstinputlisting[firstline=30, lastline=35, firstnumber=30]{src/axioms-clif/02_taxonomy_abstract_individual.p.clif}
+    
+    
+    \item[\myax{ax_qualityStructure_partition}] There is no $x$ such that it is a \me{Quality Dimension} and a \me{Quality Space}.
+    
+    $\neg \exists x(\textsf{qualityDimension}(x)\wedge \textsf{qualitySpace}(x))$
+    
+    \lstinputlisting[firstline=36, lastline=40, firstnumber=36]{src/axioms-clif/02_taxonomy_abstract_individual.p.clif}
+\end{itemize}
+
+
+% ------------------------------ BEGIN DEPRECATED ------------------------------
+
+
 \subsection{UFO Taxonomy}
-
-% Thing Taxonomy
-\subsubsection{Partial Taxonomy of Thing}
-
-% \begin{figure}[ht]
-%     \centering
-%     \includegraphics[width=0.8\textwidth]{diagrams/Thing_Diagram.png}
-%     \caption{Partial Taxonomy of UFO -- Thing.}
-%     \label{fig:ufo_taxonomy_thing}
-% \end{figure}
-
-\lstinputlisting[
-    firstline=\BeginThingTaxonomy,
-    lastline=\EndThingTaxonomy,
-    firstnumber=\BeginThingTaxonomy
-]{ufo_2021.tex}
 
 % Abstract Individual Taxonomy
 \subsubsection{Partial Taxonomy of Abstract Individual}
@@ -262,12 +309,12 @@ This subsection presents most general types of UFO's taxonomy specializing the t
 % TODO: update taxonomy with a disjointness declaration between Quale, Set, and World
 % Add World to the taxonomy
 
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.4\textwidth]{diagrams/Abstract_Individual_Diagram.png}
-    \caption{Partial Taxonomy of UFO -- Abstract Individual.}
-    \label{fig:ufo_taxonomy_abstract_individual}
-\end{figure}
+% \begin{figure}[ht]
+%     \centering
+%     \includegraphics[width=0.4\textwidth]{diagrams/Abstract_Individual_Diagram.png}
+%     \caption{Partial Taxonomy of UFO -- Abstract Individual.}
+%     \label{fig:ufo_taxonomy_abstract_individual}
+% \end{figure}
 
 \lstinputlisting[
     firstline=\BeginAbstractIndividualTaxonomy,
@@ -442,4 +489,3 @@ This subsection presents most general types of UFO's taxonomy specializing the t
 % \bibliography{main}
 
 \end{document}
-% This is never printed
