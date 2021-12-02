@@ -1,44 +1,10 @@
 \documentclass{article}
 
+\usepackage[a4paper, total={6in, 8in}]{geometry}
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage{graphicx}
 \usepackage{subcaption}
-
-\newcommand{\BeginThingTaxonomy}{4}
-\newcommand{\EndThingTaxonomy}{49}
-\newcommand{\BeginAbstractIndividualTaxonomy}{51}
-\newcommand{\EndAbstractIndividualTaxonomy}{86}
-\newcommand{\BeginEndurantTaxonomy}{88}
-\newcommand{\EndEndurantTaxonomy}{145}
-\newcommand{\BeginEndurantTaxonomyOfNaturesBegin}{147}
-\newcommand{\EndEndurantTaxonomyOfNaturesEnd}{192}
-\newcommand{\BeginEndurantTaxonomyOfPropertiesBegin}{194}
-\newcommand{\EndEndurantTaxonomyOfPropertiesEnd}{271}
-\newcommand{\BeginInstantationAndSpecialzation}{273}
-\newcommand{\EndInstantationAndSpecialzation}{356}
-\newcommand{\BeginRigidityAndSortality}{360}
-\newcommand{\EndRigidityAndSortality}{626}
-\newcommand{\BeginEndurantsTypesDefinition}{628}
-\newcommand{\EndEndurantsTypesDefinition}{835}
-\newcommand{\BeginMereology}{837}
-\newcommand{\EndMereology}{888}
-\newcommand{\BeginComposition}{886}
-\newcommand{\EndComposition}{914}
-\newcommand{\BeginConstitution}{916}
-\newcommand{\EndConstitution}{959}
-\newcommand{\BeginExistentialDependence}{961}
-\newcommand{\EndExistentialDependence}{983}
-\newcommand{\BeginMomentsAndInherence}{985}
-\newcommand{\EndMomentsAndInherence}{1055}
-\newcommand{\BeginRelators}{1057}
-\newcommand{\EndRelators}{1137}
-\newcommand{\BeginCharacterization}{1139}
-\newcommand{\EndCharacterization}{1156}
-\newcommand{\BeginQualitiesAndQualityStructures}{1162}
-\newcommand{\EndQualitiesAndQualityStructures}{1180}
-\newcommand{\BeginEndurantsAndPerdurants}{1182}
-\newcommand{\EndEndurantsAndPerdurants}{1201}
 
 % newcommand for labels of axioms, theorems and definitions
 \newcommand{\AxLabel}{a}
@@ -387,170 +353,170 @@ This subsection presents a portion of UFO's taxonomy specializing the type \me{E
 % ------------------------------ BEGIN DEPRECATED ------------------------------
 
 
-\subsection{UFO Taxonomy}
+% \subsection{UFO Taxonomy}
 
-% Endurant Taxonomy
-\subsubsection{Partial Taxonomy of Endurant}
+% % Endurant Taxonomy
+% \subsubsection{Partial Taxonomy of Endurant}
 
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.8\textwidth]{diagrams/Endurant_Diagram.png}
-    \caption{Partial Taxonomy of UFO -- Endurant.}
-    \label{fig:ufo_taxonomy_endurant}
-\end{figure}
+% \begin{figure}[ht]
+%     \centering
+%     \includegraphics[width=0.8\textwidth]{diagrams/Endurant_Diagram.png}
+%     \caption{Partial Taxonomy of UFO -- Endurant.}
+%     \label{fig:ufo_taxonomy_endurant}
+% \end{figure}
 
-\lstinputlisting[
-    firstline=\BeginEndurantTaxonomy,
-    lastline=\EndEndurantTaxonomy,
-    firstnumber=\BeginEndurantTaxonomy,
-]{ufo_2021.tex}
+% \lstinputlisting[
+%     firstline=\BeginEndurantTaxonomy,
+%     lastline=\EndEndurantTaxonomy,
+%     firstnumber=\BeginEndurantTaxonomy,
+% ]{ufo_2021.tex}
 
-% Endurant Type Taxonomy of Ontological Natures
-\subsubsection{Partial Taxonomy of Endurant Type (on ontological natures)}
+% % Endurant Type Taxonomy of Ontological Natures
+% \subsubsection{Partial Taxonomy of Endurant Type (on ontological natures)}
 
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.9\textwidth]{diagrams/Endurant_Type_Natures_Diagram.png}
-    \caption{Partial Taxonomy of UFO -- Endurant Types (by ontological nature).}
-    \label{fig:ufo_taxonomy_endurant_types_natures}
-\end{figure}
+% \begin{figure}[ht]
+%     \centering
+%     \includegraphics[width=0.9\textwidth]{diagrams/Endurant_Type_Natures_Diagram.png}
+%     \caption{Partial Taxonomy of UFO -- Endurant Types (by ontological nature).}
+%     \label{fig:ufo_taxonomy_endurant_types_natures}
+% \end{figure}
 
-\lstinputlisting[
-    firstline=\BeginEndurantTaxonomyOfNaturesBegin,
-    lastline=\EndEndurantTaxonomyOfNaturesEnd,
-    firstnumber=\BeginEndurantTaxonomyOfNaturesBegin
-]{ufo_2021.tex}
+% \lstinputlisting[
+%     firstline=\BeginEndurantTaxonomyOfNaturesBegin,
+%     lastline=\EndEndurantTaxonomyOfNaturesEnd,
+%     firstnumber=\BeginEndurantTaxonomyOfNaturesBegin
+% ]{ufo_2021.tex}
 
-% Endurant Type Taxonomy of Modal Properties of Types
-\subsubsection{Partial Taxonomy of Endurant Type (on modal properties of types)}
+% % Endurant Type Taxonomy of Modal Properties of Types
+% \subsubsection{Partial Taxonomy of Endurant Type (on modal properties of types)}
 
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=\textwidth]{diagrams/Endurant_Type_Properties_Diagram.png}
-    \caption{Partial Taxonomy of UFO -- Endurant Types (by modal properties of types).}
-    \label{fig:ufo_taxonomy_endurant_types_properties}
-\end{figure}
+% \begin{figure}[ht]
+%     \centering
+%     \includegraphics[width=\textwidth]{diagrams/Endurant_Type_Properties_Diagram.png}
+%     \caption{Partial Taxonomy of UFO -- Endurant Types (by modal properties of types).}
+%     \label{fig:ufo_taxonomy_endurant_types_properties}
+% \end{figure}
 
-\lstinputlisting[
-    firstline=\BeginEndurantTaxonomyOfPropertiesBegin, 
-    lastline=\EndEndurantTaxonomyOfPropertiesEnd, 
-    firstnumber=\BeginEndurantTaxonomyOfPropertiesBegin
-]{ufo_2021.tex}
+% \lstinputlisting[
+%     firstline=\BeginEndurantTaxonomyOfPropertiesBegin, 
+%     lastline=\EndEndurantTaxonomyOfPropertiesEnd, 
+%     firstnumber=\BeginEndurantTaxonomyOfPropertiesBegin
+% ]{ufo_2021.tex}
 
-% Types, Individuals, Instantiation, and Specialization
-\subsubsection{Defining Types, Individuals, and Specialization}
+% % Types, Individuals, Instantiation, and Specialization
+% \subsubsection{Defining Types, Individuals, and Specialization}
 
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.6\textwidth]{diagrams/Instantiation_Diagram.png}
-    \caption{Types, individuals, instantiation, and specialization.}
-    \label{fig:instantiation_and_specialization}
-\end{figure}
+% \begin{figure}[ht]
+%     \centering
+%     \includegraphics[width=0.6\textwidth]{diagrams/Instantiation_Diagram.png}
+%     \caption{Types, individuals, instantiation, and specialization.}
+%     \label{fig:instantiation_and_specialization}
+% \end{figure}
 
-\lstinputlisting[
-    firstline=\BeginInstantationAndSpecialzation, 
-    lastline=\EndInstantationAndSpecialzation, 
-    firstnumber=\BeginInstantationAndSpecialzation
-]{ufo_2021.tex}
+% \lstinputlisting[
+%     firstline=\BeginInstantationAndSpecialzation, 
+%     lastline=\EndInstantationAndSpecialzation, 
+%     firstnumber=\BeginInstantationAndSpecialzation
+% ]{ufo_2021.tex}
 
-% Sortality and Rigidity
-\subsubsection{Defining Rigidity and Sortality}
+% % Sortality and Rigidity
+% \subsubsection{Defining Rigidity and Sortality}
 
-\lstinputlisting[
-    firstline=\BeginRigidityAndSortality, 
-    lastline=\EndRigidityAndSortality, 
-    firstnumber=\BeginRigidityAndSortality
-]{ufo_2021.tex}
+% \lstinputlisting[
+%     firstline=\BeginRigidityAndSortality, 
+%     lastline=\EndRigidityAndSortality, 
+%     firstnumber=\BeginRigidityAndSortality
+% ]{ufo_2021.tex}
 
-% Endurant Types Definition
-\subsubsection{Defining Endurant Types}
+% % Endurant Types Definition
+% \subsubsection{Defining Endurant Types}
 
-\lstinputlisting[
-    firstline=\BeginEndurantsTypesDefinition, 
-    lastline=\EndEndurantsTypesDefinition, 
-    firstnumber=\BeginEndurantsTypesDefinition
-]{ufo_2021.tex}
+% \lstinputlisting[
+%     firstline=\BeginEndurantsTypesDefinition, 
+%     lastline=\EndEndurantsTypesDefinition, 
+%     firstnumber=\BeginEndurantsTypesDefinition
+% ]{ufo_2021.tex}
 
-% Mereology
-\subsubsection{Mereology}
+% % Mereology
+% \subsubsection{Mereology}
 
-\lstinputlisting[
-    firstline=\BeginMereology, 
-    lastline=\EndMereology, 
-    firstnumber=\BeginMereology
-]{ufo_2021.tex}
+% \lstinputlisting[
+%     firstline=\BeginMereology, 
+%     lastline=\EndMereology, 
+%     firstnumber=\BeginMereology
+% ]{ufo_2021.tex}
 
-% Composition
-\subsubsection{Composition}
+% % Composition
+% \subsubsection{Composition}
 
-\lstinputlisting[
-    firstline=\BeginComposition, 
-    lastline=\EndComposition, 
-    firstnumber=\BeginComposition
-]{ufo_2021.tex}
+% \lstinputlisting[
+%     firstline=\BeginComposition, 
+%     lastline=\EndComposition, 
+%     firstnumber=\BeginComposition
+% ]{ufo_2021.tex}
 
-% Constitution
-\subsubsection{Constitution}
+% % Constitution
+% \subsubsection{Constitution}
 
-\lstinputlisting[
-    firstline=\BeginConstitution, 
-    lastline=\EndConstitution, 
-    firstnumber=\BeginConstitution
-]{ufo_2021.tex}
+% \lstinputlisting[
+%     firstline=\BeginConstitution, 
+%     lastline=\EndConstitution, 
+%     firstnumber=\BeginConstitution
+% ]{ufo_2021.tex}
 
-% Existential Dependence
-\subsubsection{Existential Dependence}
+% % Existential Dependence
+% \subsubsection{Existential Dependence}
 
-\lstinputlisting[
-    firstline=\BeginExistentialDependence, 
-    lastline=\EndExistentialDependence, 
-    firstnumber=\BeginExistentialDependence
-]{ufo_2021.tex}
+% \lstinputlisting[
+%     firstline=\BeginExistentialDependence, 
+%     lastline=\EndExistentialDependence, 
+%     firstnumber=\BeginExistentialDependence
+% ]{ufo_2021.tex}
 
-% Moments and Inherence
-\subsubsection{Moments and Inherence}
+% % Moments and Inherence
+% \subsubsection{Moments and Inherence}
 
-\lstinputlisting[
-    firstline=\BeginMomentsAndInherence, 
-    lastline=\EndMomentsAndInherence, 
-    firstnumber=\BeginMomentsAndInherence
-]{ufo_2021.tex}
+% \lstinputlisting[
+%     firstline=\BeginMomentsAndInherence, 
+%     lastline=\EndMomentsAndInherence, 
+%     firstnumber=\BeginMomentsAndInherence
+% ]{ufo_2021.tex}
 
-% Relators
-\subsubsection{Relators}
+% % Relators
+% \subsubsection{Relators}
 
-\lstinputlisting[
-    firstline=\BeginRelators, 
-    lastline=\EndRelators, 
-    firstnumber=\BeginRelators
-]{ufo_2021.tex}
+% \lstinputlisting[
+%     firstline=\BeginRelators, 
+%     lastline=\EndRelators, 
+%     firstnumber=\BeginRelators
+% ]{ufo_2021.tex}
 
-% Characterization
-\subsubsection{Characterization}
+% % Characterization
+% \subsubsection{Characterization}
 
-\lstinputlisting[
-    firstline=\BeginCharacterization, 
-    lastline=\EndCharacterization, 
-    firstnumber=\BeginCharacterization
-]{ufo_2021.tex}
+% \lstinputlisting[
+%     firstline=\BeginCharacterization, 
+%     lastline=\EndCharacterization, 
+%     firstnumber=\BeginCharacterization
+% ]{ufo_2021.tex}
 
-% Qualities and Quality Structures
-\subsubsection{Qualities and Quality Structures}
+% % Qualities and Quality Structures
+% \subsubsection{Qualities and Quality Structures}
 
-\lstinputlisting[
-    firstline=\BeginQualitiesAndQualityStructures, 
-    lastline=\EndQualitiesAndQualityStructures, 
-    firstnumber=\BeginQualitiesAndQualityStructures
-]{ufo_2021.tex}
+% \lstinputlisting[
+%     firstline=\BeginQualitiesAndQualityStructures, 
+%     lastline=\EndQualitiesAndQualityStructures, 
+%     firstnumber=\BeginQualitiesAndQualityStructures
+% ]{ufo_2021.tex}
 
-% Endurants and Perdurants
-\subsubsection{Endurants and Perdurants}
+% % Endurants and Perdurants
+% \subsubsection{Endurants and Perdurants}
 
-\lstinputlisting[
-    firstline=\BeginEndurantsAndPerdurants, 
-    lastline=\EndEndurantsAndPerdurants, 
-    firstnumber=\BeginEndurantsAndPerdurants
-]{ufo_2021.tex}
+% \lstinputlisting[
+%     firstline=\BeginEndurantsAndPerdurants, 
+%     lastline=\EndEndurantsAndPerdurants, 
+%     firstnumber=\BeginEndurantsAndPerdurants
+% ]{ufo_2021.tex}
 
 % \bibliographystyle{abbrv}
 % \bibliography{main}
