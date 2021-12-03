@@ -512,6 +512,54 @@ This subsection presents a portion of UFO's taxonomy specializing the type \me{E
 
 
 
+% 06_instantiation.p
+\subsection{On the Definitions of \me{Type}, \me{Individual}, Instantiation, and Specialization}
+
+This subsection introduces the UFO's definitions of \me{Type} and \me{Individual} as well as the definitions for the relations of \me{instance of}, \me{specializes}, and \me{proper specializes}.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.6\textwidth]{diagrams/Instantiation_Diagram.png}
+    \caption{Types, individuals, instantiation, and specialization.}
+    \label{fig:06_instantiation}
+\end{figure}
+
+\begin{itemize}
+    \item[\myax{ax_dIof}] The \me{instance of} relation can only hold between $x$, $y$, and $w$, where $x$ is an instance of a type $y$ in $w$, and $w$ is the world where this relation holds.
+    
+    $\forall x,y,w(\textsf{iof}(x,y,w)\rightarrow \textsf{type\_}(y)\wedge \textsf{world}(w))$
+
+    \lstinputlisting[firstline=1, lastline=6, firstnumber=1]{src/axioms-clif/06_instantiation.p.clif}
+    
+    % TODO: review the adopted explanation style; it may be interesting to adopt a more explanatory style for the definitions in natural language rather than a simple verbalization of an axiom; e.g., "Instance of relations can only hold between instances and types in some given world."
+    \item[\myax{ax_dType}] For every $x$, $x$ is a type ifif there exists some $y$ and $w$ such that $y$ is instance of $x$ in the world $w$.
+    
+    $\forall x(\textsf{type\_}(x)\leftrightarrow \exists y,w(\textsf{iof}(y,x,w)))$
+
+    \lstinputlisting[firstline=7, lastline=14, firstnumber=7]{src/axioms-clif/06_instantiation.p.clif}
+    
+    % TODO: review the adopted explanation style; e.g., "A type is a predicative entity that collects the characteristics manifested by its instances, such that $x$ is a type ifif there exists some world $w$ where it has some instance $y$."; notice that we may risk deviating from what the axiom says.
+    \item[\myax{ax_dIndividual}] For every $x$, $x$ is an individual ifif there is no pair $y$ and $w$ such that $y$ is instance of $x$ in $w$.
+    
+    $\forall x(\textsf{individual}(x)\leftrightarrow \neg \exists y,w(\textsf{iof}(y,x,w)))$
+
+    \lstinputlisting[firstline=15, lastline=22, firstnumber=15]{src/axioms-clif/06_instantiation.p.clif}
+    
+    \item[\myax{ax_multiLevel}] The instance $x$ in an instance of relation must be either a type or an individual.
+    
+    $\forall x,y,w(\textsf{iof}(x,y,w)\rightarrow \textsf{type\_}(x)\vee \textsf{individual}(x))$
+
+    \lstinputlisting[firstline=23, lastline=28, firstnumber=23]{src/axioms-clif/06_instantiation.p.clif}
+    
+    \item[\myax{ax_twoLevelConstrained}] Chains of instance of relations are limited to a depth of two.
+    % TODO: we must verify whether the formalization is enforcing a strict stratification of ordered types, otherwise we cannot state the following;
+    % In other words, this formalization only accounts for types whose instances are individuals (i.e., first-order types), and types whose instances include first-order types (i.e., second-order types).
+    
+    $\neg \exists x,y,z,w(\textsf{type\_}(x)\wedge \textsf{iof}(x,y,w)\wedge \textsf{iof}(y,z,w))$
+
+    \lstinputlisting[firstline=29, lastline=33, firstnumber=29]{src/axioms-clif/06_instantiation.p.clif}
+\end{itemize}
+
 
 % ------------------------------ BEGIN DEPRECATED ------------------------------
 
