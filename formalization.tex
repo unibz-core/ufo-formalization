@@ -284,7 +284,6 @@ This subsection presents a portion of UFO's taxonomy specializing the type \me{E
     
     \lstinputlisting[firstline=1, lastline=6, firstnumber=1]{src/axioms-clif/03_taxonomy_endurant.p.clif}
     
-    
     \item[\myax{ax_endurant_partition}] There is no $x$ such that it is a \me{Substantial} and a \me{Moment}.
     
     $\neg \exists x(\textsf{substantial}(x)\wedge \textsf{moment}(x))$
@@ -297,7 +296,6 @@ This subsection presents a portion of UFO's taxonomy specializing the type \me{E
     
     \lstinputlisting[firstline=12, lastline=17, firstnumber=12]{src/axioms-clif/03_taxonomy_endurant.p.clif}
     
-    
     \item[\myax{ax_substantial_partition}] There is no $x$ such that it is an \me{Object}, a \me{Collective}, and a \me{Quantity} (pairwise disjoint).
     
     $\neg \exists x((\textsf{object}(x)\wedge \textsf{collective}(x))\vee (\textsf{object}(x)\wedge \textsf{quantity}(x))\vee (\textsf{collective}(x)\wedge \textsf{quantity}(x)))$
@@ -309,7 +307,6 @@ This subsection presents a portion of UFO's taxonomy specializing the type \me{E
     $\forall x(\textsf{intrinsicMoment}(x)\vee \textsf{relator}(x)\leftrightarrow \textsf{moment}(x))$
     
     \lstinputlisting[firstline=23, lastline=28, firstnumber=23]{src/axioms-clif/03_taxonomy_endurant.p.clif}
-    
     
     \item[\myax{ax_moment_partition}] There is no $x$ such that it is an \me{Intrinsic Moment} and a \me{Relator}.
     
@@ -354,7 +351,7 @@ This subsection presents a portion of UFO's taxonomy specializing the type \me{E
 % 04_taxonomy_endurant_type_nature.p
 \subsection{Partial Taxonomy of UFO: \me{Endurant Type} by Ontological Natures}
 
-This subsection presents a portion of UFO's taxonomy specializing the type \me{Endurant} (Figure~\ref{fig:04_taxonomy_endurant_type_nature}).
+This subsection presents a portion of UFO's taxonomy specializing the type \me{Endurant Type} classified by ontological natures (Figure~\ref{fig:04_taxonomy_endurant_type_nature}).
 
 \begin{figure}[ht]
     \centering
@@ -370,14 +367,11 @@ This subsection presents a portion of UFO's taxonomy specializing the type \me{E
     
     \lstinputlisting[firstline=1, lastline=6, firstnumber=1]{src/axioms-clif/04_taxonomy_endurant_type_nature.p.clif}
     
-    
     \item[\myax{ax_endurantType_partition_nature}] There is no $x$ such that it is a \me{Substantial Type} and a \me{Moment Type}.
     
     $\neg \exists x(\textsf{substantialType}(x)\wedge \textsf{momentType}(x))$
     
     \lstinputlisting[firstline=7, lastline=11, firstnumber=7]{src/axioms-clif/04_taxonomy_endurant_type_nature.p.clif}
-
-    % --------------------------------
 
     \item[\myax{ax_substantialType_taxonomy}] For every $x$, $x$ is a \me{Substantial Type} ifif $x$ is either an \me{Object Type}, a \me{Collective Type}, or a \me{Quantity Type}.
     
@@ -385,7 +379,6 @@ This subsection presents a portion of UFO's taxonomy specializing the type \me{E
     
     \lstinputlisting[firstline=12, lastline=17, firstnumber=12]{src/axioms-clif/04_taxonomy_endurant_type_nature.p.clif}
     
-
     \item[\myax{ax_substantialType_partition}] There is no $x$ such that it is an \me{Object Type}, a \me{Collective Type}, and a \me{Quantity Type} (pairwise disjoint).
     
     $\neg \exists x((\textsf{objectType}(x)\wedge \textsf{collectiveType}(x))\vee (\textsf{objectType}(x)\wedge \textsf{quantityType}(x))\vee (\textsf{collectiveType}(x)\wedge \textsf{quantityType}(x)))$
@@ -397,7 +390,6 @@ This subsection presents a portion of UFO's taxonomy specializing the type \me{E
     $\forall x(\textsf{intrinsicMomentType}(x)\vee \textsf{relatorType}(x)\leftrightarrow \textsf{momentType}(x))$
     
     \lstinputlisting[firstline=23, lastline=28, firstnumber=23]{src/axioms-clif/04_taxonomy_endurant_type_nature.p.clif}
-    
     
     \item[\myax{ax_momentType_partition}] There is no $x$ such that it is an \me{Intrinsic Moment Type} and a \me{Relator Type}.
     
@@ -411,7 +403,6 @@ This subsection presents a portion of UFO's taxonomy specializing the type \me{E
     
     \lstinputlisting[firstline=34, lastline=39, firstnumber=34]{src/axioms-clif/04_taxonomy_endurant_type_nature.p.clif}
     
-    
     \item[\myax{ax_intrinsicMomentType_partition}] There is no $x$ such that it is an \me{Intrinsic Moment Type} and a \me{Relator Type}.
     
     $\neg \exists x(\textsf{qualityType}(x)\wedge \textsf{modeType}(x))$
@@ -421,27 +412,111 @@ This subsection presents a portion of UFO's taxonomy specializing the type \me{E
 
 
 
+% 05_taxonomy_endurant_types_properties.p
+\subsection{Partial Taxonomy of UFO: \me{Endurant Type} by Modal Properties of Types}
+
+This subsection presents a portion of UFO's taxonomy specializing the type \me{Endurant Type} classified by the modal properties of types (Figure~\ref{fig:05_taxonomy_endurant_types_properties}).
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\textwidth]{diagrams/Endurant_Type_Properties_Diagram.png}
+    \caption{Visual representation of UFO's taxonomy of \me{Endurant Type} classified by the modal properties of types.}
+    \label{fig:05_taxonomy_endurant_types_properties}
+\end{figure}
+
+\begin{itemize}
+    \item[\myax{ax_endurantType_taxonomy_properties}] For every $x$, $x$ is an \me{Endurant Type} ifif $x$ is either a \me{Sortal} or a \me{NonSortal}.
+    
+    $\forall x(\textsf{sortal}(x)\vee \textsf{nonSortal}(x)\leftrightarrow \textsf{endurantType}(x))$
+    
+    \lstinputlisting[firstline=1, lastline=6, firstnumber=1]{src/axioms-clif/05_taxonomy_endurant_types_properties.p.clif}
+    
+    \item[\myax{ax_endurantType_partition_properties}] There is no $x$ such that it is a \me{Sortal} and a \me{NonSortal}.
+    
+    $\neg \exists x(\textsf{sortal}(x)\wedge \textsf{nonSortal}(x))$
+    
+    \lstinputlisting[firstline=7, lastline=11, firstnumber=7]{src/axioms-clif/05_taxonomy_endurant_types_properties.p.clif}
+
+    \item[\myax{ax_sortal_taxonomy}] For every $x$, $x$ is a \me{Sortal} ifif $x$ is either a \me{Rigid Sortal} or an \me{AntiRigid Sortal}.
+    
+    $\forall x(\textsf{rigidSortal}(x)\vee \textsf{antiRigidSortal}(x)\leftrightarrow \textsf{sortal}(x))$
+    
+    \lstinputlisting[firstline=12, lastline=17, firstnumber=12]{src/axioms-clif/05_taxonomy_endurant_types_properties.p.clif}
+    
+    \item[\myax{ax_sortal_partition}] There is no $x$ such that it is a \me{Rigid Sortal} and an \me{AntiRigid Sortal}.
+    
+    $\neg \exists x(\textsf{rigidSortal}(x)\wedge \textsf{antiRigidSortal}(x))$
+    
+    \lstinputlisting[firstline=18, lastline=22, firstnumber=18]{src/axioms-clif/05_taxonomy_endurant_types_properties.p.clif}
+
+    \item[\myax{ax_rigidSortal_taxonomy}] For every $x$, $x$ is a \me{Rigid Sortal} ifif $x$ is either a \me{Kind} or a \me{Subkind}.
+    
+    $\forall x(\textsf{kind}(x)\vee \textsf{subkind}(x)\leftrightarrow \textsf{rigidSortal}(x))$
+    
+    \lstinputlisting[firstline=23, lastline=28, firstnumber=23]{src/axioms-clif/05_taxonomy_endurant_types_properties.p.clif}
+    
+    \item[\myax{ax_rigidSortal_partition}] There is no $x$ such that it is a \me{Kind} and a \me{Subkind}.
+    
+    $\neg \exists x(\textsf{kind}(x)\wedge \textsf{subkind}(x))$
+    
+    \lstinputlisting[firstline=29, lastline=33, firstnumber=29]{src/axioms-clif/05_taxonomy_endurant_types_properties.p.clif}
+
+    \item[\myax{ax_antiRigidSortal_taxonomy}] For every $x$, $x$ is an \me{AntiRigid Sortal} ifif $x$ is either a \me{Phase} or a \me{Role}.
+    
+    $\forall x(\textsf{phase}(x)\vee \textsf{role}(x)\leftrightarrow \textsf{antiRigidSortal}(x))$
+    
+    \lstinputlisting[firstline=34, lastline=39, firstnumber=34]{src/axioms-clif/05_taxonomy_endurant_types_properties.p.clif}
+    
+    \item[\myax{ax_antiRigidSortal_partition}] There is no $x$ such that it is a \me{Phase} and a \me{Role}.
+    
+    $\neg \exists x(\textsf{phase}(x)\wedge \textsf{role}(x))$
+    
+    \lstinputlisting[firstline=40, lastline=44, firstnumber=40]{src/axioms-clif/05_taxonomy_endurant_types_properties.p.clif}
+
+    \item[\myax{ax_nonSortal_taxonomy}] For every $x$, $x$ is a \me{NonSortal} ifif $x$ is either a \me{Rigid NonSortal}, an \me{AntiRigid NonSortal}, or a \me{SemmiRigid NonSortal}.
+    
+    $\forall x(\textsf{rigidNonSortal}(x)\vee \textsf{semiRigidNonSortal}(x)\vee \textsf{antiRigidNonSortal}(x)\leftrightarrow \textsf{nonSortal}(x))$
+    
+    \lstinputlisting[firstline=45, lastline=50, firstnumber=45]{src/axioms-clif/05_taxonomy_endurant_types_properties.p.clif}
+    
+    \item[\myax{ax_nonSortal_partition}] There is no $x$ such that it is an \me{Rigid NonSortal}, an \me{AntiRigid NonSortal}, and a \me{SemiRigid NonSortal} (pairwise disjoint). 
+    
+    $\neg \exists x((\textsf{rigidNonSortal}(x)\wedge \textsf{semiRigidNonSortal}(x))\vee (\textsf{rigidNonSortal}(x)\wedge \textsf{antiRigidNonSortal}(x))\vee (\textsf{semiRigidNonSortal}(x)\wedge \textsf{antiRigidNonSortal}(x)))$
+    
+    \lstinputlisting[firstline=51, lastline=55, firstnumber=51]{src/axioms-clif/05_taxonomy_endurant_types_properties.p.clif}
+
+    \item[\myax{ax_rigidNonSortal_taxonomy}] Every $x$ that is a \me{Rigid NonSortal} is also a \me{Category}.
+    
+    $\forall x(\textsf{rigidNonSortal}(x)\leftrightarrow \textsf{category}(x))$
+    
+    \lstinputlisting[firstline=56, lastline=61, firstnumber=56]{src/axioms-clif/05_taxonomy_endurant_types_properties.p.clif}
+
+    \item[\myax{ax_semiRigidNonSortal_taxonomy}] Every $x$ that is a \me{SemiRigid NonSortal} is also a \me{Mixin}.
+    
+    $\forall x(\textsf{semiRigidNonSortal}(x)\leftrightarrow \textsf{mixin}(x))$
+    
+    \lstinputlisting[firstline=62, lastline=67, firstnumber=62]{src/axioms-clif/05_taxonomy_endurant_types_properties.p.clif}
+
+    \item[\myax{ax_antiRigidNonSortal_taxonomy}] For every $x$, $x$ is an \me{AntiRigid NonSortal} ifif $x$ is either a \me{Phase Mixin} or a \me{Role Mixin}.
+    
+    $\forall x(\textsf{phaseMixin}(x)\vee \textsf{roleMixin}(x)\leftrightarrow \textsf{antiRigidNonSortal}(x))$
+    
+    \lstinputlisting[firstline=68, lastline=73, firstnumber=68]{src/axioms-clif/05_taxonomy_endurant_types_properties.p.clif}
+    
+    \item[\myax{ax_antiRigidNonSortal_partition}] There is no $x$ such that it is a \me{Phase Mixin} and a \me{Role Mixin}.
+    
+    $\neg \exists x(\textsf{phaseMixin}(x)\wedge \textsf{roleMixin}(x))$
+    
+    \lstinputlisting[firstline=74, lastline=78, firstnumber=74]{src/axioms-clif/05_taxonomy_endurant_types_properties.p.clif}
+\end{itemize}
+
+
+
 
 % ------------------------------ BEGIN DEPRECATED ------------------------------
 
 
 % \subsection{UFO Taxonomy}
-
-% % Endurant Type Taxonomy of Modal Properties of Types
-% \subsubsection{Partial Taxonomy of Endurant Type (on modal properties of types)}
-
-% \begin{figure}[ht]
-%     \centering
-%     \includegraphics[width=\textwidth]{diagrams/Endurant_Type_Properties_Diagram.png}
-%     \caption{Partial Taxonomy of UFO -- Endurant Types (by modal properties of types).}
-%     \label{fig:ufo_taxonomy_endurant_types_properties}
-% \end{figure}
-
-% \lstinputlisting[
-%     firstline=\BeginEndurantTaxonomyOfPropertiesBegin, 
-%     lastline=\EndEndurantTaxonomyOfPropertiesEnd, 
-%     firstnumber=\BeginEndurantTaxonomyOfPropertiesBegin
-% ]{ufo_2021.tex}
 
 % % Types, Individuals, Instantiation, and Specialization
 % \subsubsection{Defining Types, Individuals, and Specialization}
